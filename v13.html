@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자동차 뉴스 모음</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 p-6">
+  <div class="max-w-screen-lg mx-auto space-y-8">
+    <!-- 상단 큰 제목 -->
+    <h1 class="text-3xl font-bold mb-4 text-center">자동차 산업 보고서 모음</h1>
+    <!-- 짧은 설명 -->
+    <p class="mb-6 text-gray-700 text-center">
+      아래 버튼을 클릭하면 상세 내용이 펼쳐집니다. 다시 클릭하면 접힙니다.
+    </p>
+
+    <!-- Accordion 1: 글로벌 EV 시장 재편 보고서 -->
+    <div class="border-b pb-6">
+      <button id="accordionIcon1" onclick="toggleAccordion(1)" class="w-full text-left px-4 py-3 bg-blue-100 hover:bg-blue-200 rounded-md focus:outline-none">
+        <span id="accordionIconText1" class="text-xl font-semibold">▶</span> 글로벌 EV 시장 재편 보고서
+      </button>
+      <div id="accordionContent1" class="hidden mt-4 bg-white p-6 rounded-md shadow">
+        
+        <!-- 제목 -->
+        <h2 class="text-2xl font-bold mb-4">글로벌 EV 시장 재편 속, 시장 점유율 경쟁 심화</h2>
+        
+        <!-- 🔎 핵심 요약 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔎</span>
+            <span class="text-xl font-semibold">핵심 요약</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>현대차 · 기아, 내수 EV 점유율 70.4%</li>
+            <li>유럽 배터리 시장 ‘역행’</li>
+            <li>중국 시장 보급형 vs. 고급화 전략</li>
+          </ul>
+        </div>
+
+        <!-- 🏢 BYD(중국) 한눈에 알아보기 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🏢</span>
+            <span class="text-xl font-semibold">BYD(중국) 한눈에 알아보기</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>설립 : 1995년 2월 10일</li>
+            <li>2024년 신차 판매량 : 427만 2,145대 <span class="text-sm text-gray-500">(전년 대비 41.26% 증가)</span></li>
+            <li>주요 사업 : 전기자동차를 비롯하여 이차 전지, 태양광 패널, ESS 등 생산</li>
+          </ul>
+        </div>
+
+        <!-- 신차 효과⋯현대차·기아, 2월 EV 내수 점유율 70%선 회복 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">신차 효과⋯현대차·기아, 2월 EV 내수 점유율 70%선 회복</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 기획조정팀, 영업팀</strong>  (전기차 내수 시장 확대 전략)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>현대·기아의 2월 전기차 내수 시장 점유율이 70.4%로, 지난해 연간 점유율 60.1% 대비 10.3%p 상승함.</li>
+            <li>현대차는 총 5346대의 전기차 판매(전년 동기 667대)와 아이오닉 5(1463대) 및 신형 캐스퍼 일렉트릭(1061대) 등 주요 모델의 강력한 판매 성과 기록, 기아는 4666대 판매 중 EV3가 2257대로 전기차 베스트셀러임.</li>
+            <li>전기차 보조금 지침이 연초보다 빠르게 발표되어 가격 경쟁력을 갖춘 것이 판매 호조에 기여함.</li>
+            <li>테슬라는 Y 중심의 판매 전략에도 불구하고 내수 시장 점유율은 15.6%로 상대적으로 하락함.</li>
+            <li>업계는 올해 현대차그룹, 테슬라, BYD 간의 치열한 경쟁을 예상함.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.inews24.com/view/1823608" class="text-blue-600 hover:underline" target="_blank">🔗1 관련 기사 자세히 보기</a>
+            <span class="mx-2"></span>
+            <a href="https://www.asiatoday.co.kr/kn/view.php?key=20250316010007754" class="text-blue-600 hover:underline" target="_blank">🔗2 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+        
+        <!-- 유럽의 배신…EV 판매 증가에도 K-배터리 출하량 감소 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">유럽의 배신…EV 판매 증가에도 K-배터리 출하량 감소</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 사업 개발팀, 기획조정팀, R&D 부서</strong> (사업 확대 방안, 중국 대응 방안 마련)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>유럽 31개국의 1월 전기차 판매량은 전년 동기 대비 37.3% 증가했음에도 불구하고, LG에너지솔루션과 삼성SDI는 유럽 내 출하량이 전년 대비 15%, 26% 감소함.</li>
+            <li>유럽 완성차 업체들이 탄소 배출 규제 강화에 따른 벌금 부담을 줄이기 위해 저렴한 중국산 배터리를 선호하는 현상이 확대되어 국내 배터리 업체들의 실적(예: LG의 영업손익 컨센서스가 전년 대비 크게 감소, 삼성SDI는 연속 적자 예상)에도 영향을 주고 있음.</li>
+            <li>중국 배터리 업체들은 EU 내 생산라인 확충 등으로 점유율을 빠르게 확대 중임.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://news.nate.com/view/20250318n03157?mid=n1101" class="text-blue-600 hover:underline" target="_blank">🔗1 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+        
+        <!-- EV 재편 中시장, 보급형 EV에 고급화 전략 시동 건 -->
+        <section>
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">EV 재편 中시장, 보급형 EV에 고급화 전략 시동 건</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 구매팀, 원가팀, R&D부서</strong>  (중국 시장, 가격경쟁력 및 기술 차별화)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>중국 완성차 시장은 국내 전기차 판매가 26% 증가하여 138만6000대를 기록, 현지 브랜드 점유율은 65.6%임.</li>
+            <li>글로벌 완성차 업체들은 보급형과 고급화를 병행하는 양극화 전략을 통해 중국 내 경쟁력을 확보하려 함.</li>
+            <li>테슬라 : 중국 내 판매량이 급감하며, 저가형 모델 Y 변형(‘모델Y 주니퍼’ 등) 개발로 가격 경쟁력 회복을 도모함.</li>
+            <li>도요타 : 현지 합작사(GAC 도요타)를 통해 보급형 EV ‘bZ3X’를 출시해 가격 경쟁력을 강화, 고급 브랜드 렉서스의 현지 생산 확대 계획 추진함.</li>
+            <li>현대자동차그룹 : 기아의 중국 맞춤형 보급형 EV EV5 출시에 이어, 현대차 및 제네시스도 중국 시장 맞춤 신형 EV 출시 및 현지 생산 검토중임.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.dt.co.kr/contents.html?article_no=2025031702109932091006" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Accordion 2: 현대차, 지역별 전략과 디자인 혁신으로 시장 공략 가속 -->
+    <div class="border-b pb-6">
+      <button id="accordionIcon2" onclick="toggleAccordion(2)" class="w-full text-left px-4 py-3 bg-blue-100 hover:bg-blue-200 rounded-md focus:outline-none">
+        <span id="accordionIconText2" class="text-xl font-semibold">▶</span> 현대차, 지역별 전략과 디자인 혁신으로 시장 공략 가속
+      </button>
+      <div id="accordionContent2" class="hidden mt-4 bg-white p-6 rounded-md shadow">
+        <!-- 제목 -->
+        <h2 class="text-2xl font-bold mb-4">현대차, 지역별 전략과 디자인 혁신으로 시장 공략 가속</h2>
+        
+        <!-- 🔎 핵심 요약 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔎</span>
+            <span class="text-xl font-semibold">핵심 요약</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>생산·R&D 이원화 전략</li>
+            <li>협력 강화를 통한 현지 맞춤형 기술 및 SDV 개발 (소프트웨어 정의 차량)</li>
+            <li>다품종 생산 체제</li>
+            <li>디자인 업그레이드 및 첨단 인포테인먼트</li>
+          </ul>
+        </div>
+
+        <!-- 🏢 현대차 한눈에 보기 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🏢</span>
+            <span class="text-xl font-semibold">현대차 한눈에 보기</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>설립: 1967년 12월 29일</li>
+            <li>2024년 영업이익: 14.2조 원 (전년 대비 약 5.9% 감소)</li>
+            <li>주요 사업: 승용차, RV, 소형 및 대형 상용차 등 자동차 OEM</li>
+          </ul>
+        </div>
+
+        <!-- 베이징-생산, 상하이-R&D…현대차, 中 사업 역할 나눈다 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">베이징-생산, 상하이-R&D…현대차, 中 사업 역할 나눈다</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 전략기획팀, R&D 부서</strong>  (중국 시장 대응 전략, 기술 혁신)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>중국 내 생산과 연구개발(R&D) 기능을 분리하여, 베이징은 생산 거점으로, 상하이는 R&D 역량 강화의 중심지로 활용하는 이원화 전략</li>
+            <li>상하이 첨단기술연구개발센터 및 UX 스튜디오를 통해 전기차, 자율주행, 소프트웨어 정의 차량(SDV) 등 미래차 핵심 기술 연구</li>
+            <li>중국 차량용 소프트웨어 전문기업 썬더소프트와 협력하여 스마트 콕핏, AI 기반 소프트웨어, 내비게이션 시스템 공동 개발</li>
+            <li>비용 효율화를 위해 베이징 1공장, 충칭 및 창저우 공장 정리, 생산 거점 정리 예정</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.newsis.com/view/NISX20250317_0003101965" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- 현대차 美 HMGMA, 워밍업 마쳤다 … 2월 판매량 2.5배 '껑충’ -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">현대차 美 HMGMA, 워밍업 마쳤다 … 2월 판매량 2.5배 '껑충’</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 생산기술, 영업팀, 금융팀</strong>  (미국 내 현지 생산 확대와 관세 리스크 대응)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>HMGMA의 2월 미국 판매량이 4073대로, 1월 대비 2.5배 상승, 판매량 급증함.</li>
+            <li>아이오닉 5를 중심으로 생산 및 판매 진행, 향후 아이오닉 9 등 대형 EV 추가 생산 예정임.</li>
+            <li>다품종 생산 체제로, 전기차와 하이브리드 동시 생산으로 기아 전기차 모델(예: EV6, EV9) 생산도 검토함.</li>
+            <li>미국 트럼프 관세 부과 가능성에 선제 대응, 현지 생산 체계 확대 및 추가 투자 계획 추진해 관세 대응 예정임.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://biz.newdaily.co.kr/site/data/html/2025/03/18/2025031800264.html" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- [시승기] 전동화로 업그레이드 된 제네시스 GV70 EV… ‘COZY’한 SUV 의 면모 -->
+        <section>
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">[시승기] 전동화로 업그레이드 된 제네시스 GV70 EV… ‘COZY’한 SUV 의 면모</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: R&D부서, 설계개발팀</strong> (성능 및 후면 디자인 개선)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>디자인 업그레이드: 전면부 ‘지-매트릭스’ 패턴 및 후면 디자인 개선으로 미래지향적 이미지 강조함.</li>
+            <li>첨단 인포테인먼트: 27인치 와이드 디스플레이, '무드 큐레이터' 기능 도입으로 사용자 편의성 향상함.</li>
+            <li>성능 개선: 배터리 용량 증가(77.4kWh → 84kWh)와 NVH 성능 개선으로 주행 안정성 및 승차감 대폭 향상함.</li>
+            <li>가격 경쟁력 유지: 전기차 세제 혜택 적용 후 기준 7530만원으로 프리미엄 전기 SUV 시장에서 경쟁력 확보함.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.asiatoday.co.kr/kn/view.php?key=20250317010008025" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Accordion 3: 기아 - 픽업, 인도EV, 미국 현지화 전략으로 시장 공략 -->
+    <div class="border-b pb-6">
+      <button id="accordionIcon3" onclick="toggleAccordion(3)" class="w-full text-left px-4 py-3 bg-blue-100 hover:bg-blue-200 rounded-md focus:outline-none">
+        <span id="accordionIconText3" class="text-xl font-semibold">▶</span> 기아 - 픽업, 인도EV, 미국 현지화 전략으로 시장 공략
+      </button>
+      <div id="accordionContent3" class="hidden mt-4 bg-white p-6 rounded-md shadow">
+        <!-- 제목 -->
+        <h2 class="text-2xl font-bold mb-4">기아 - 픽업, 인도EV, 미국 현지화 전략으로 시장 공략</h2>
+
+        <!-- 🔎 핵심 요약 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔎</span>
+            <span class="text-xl font-semibold">핵심 요약</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>국내 픽업트럭 경쟁 재개</li>
+            <li>인도 시장 진출 전략</li>
+            <li>미국 현지 생산 확대 전략</li>
+          </ul>
+        </div>
+
+        <!-- 🏢 기아 한눈에 보기 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🏢</span>
+            <span class="text-xl font-semibold">기아 한눈에 보기</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>설립 : 1944년 6월 9일</li>
+            <li>2024년 영업이익 : 12조 6,671억 원 <span class="text-sm text-gray-500">(전년 대비 약 9.1% 증가)</span></li>
+            <li>주요 사업 : 생산제품 승용차, RV, 상용차, 하이브리드차, 전기차 등</li>
+          </ul>
+        </div>
+
+        <!-- 픽업트럭 시장, 40년 만에 다시 경쟁 시대로 기아 출사표 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">픽업트럭 시장, 40년 만에 다시 경쟁 시대로 기아 출사표</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서:  원가팀, 구매팀, 사업개발팀</strong> (가격경쟁력 및 고객 맞춤형 니즈 충족)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>기아가 독자 개발한 픽업트럭 ‘더 기아 타스만’을 국내 출시하며, 40년 만에 픽업트럭 시장에 새로운 경쟁 구도가 형성됨.</li>
+            <li>기아는 트림별(다이내믹, 어드벤처, 익스트림, X-Pro)로 세분화해 다양한 고객 니즈를 충족시키며, 해외시장(호주, 중동, 아프리카, 중남미) 진출 계획도 포함됨.</li>
+            <li>KG모빌리티는 전기픽업트럭 ‘무쏘 EV’를 내놓으며 가격 경쟁력을 무기로 시장 공략 예정임.</li>
+            <li>경기 침체 속 소비자들이 승용차와 트럭의 중간 형태로 픽업트럭을 선호할 가능성이 있음.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.chosun.com/economy/auto/2025/02/25/QM5HIV6RJFG2JDRPZYW4GIDGPQ/" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- 기아, 인도 전기차 시장 '출사표'... 카렌스·시로스 EV로 판 흔든다 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">기아, 인도 전기차 시장 '출사표'... 카렌스·시로스 EV로 판 흔든다</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: R&D부서, 생산기술팀</strong>  (전동화 및 미래지향디자인 기여)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>기아가 인도 전기차 시장에 두 모델(카렌스 EV, 시로스 EV)을 선보이며 본격 전동화에 나섬.</li>
+            <li>카렌스 EV : 2024년 중반 출시 예정, 미래지향 디자인(LED 주간 주행등, 혁신 헤드라이트, 공기역학적 휠) 적용됨.</li>
+            <li>내부에는 듀얼 10.25인치 스크린, 파노라믹 선루프 등 첨단 인포테인먼트 시스템 탑재됨.</li>
+            <li>주행거리는 390km에서 최대 473km로 기대되며, 고급 운전자 보조 시스템(ADAS 레벨 2 탑재 가능성) 있음.</li>
+            <li>시로스 EV : 2026년 출시 예정, 40kWh 배터리 탑재로 350~400km 주행 목표(보급형 EV 전략)임.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.g-enews.com/article/Global-Biz/2025/03/202503171010517010fbbec65dfb_1" class="text-blue-600 hover:underline" target="_blank">🔗1 관련 기사 자세히 보기</a>
+            <span class="mx-2"></span>
+            <a href="https://www.edaily.co.kr/News/Read?newsId=03601446642104632&mediaCodeNo=257&OutLnkChk=Y" class="text-blue-600 hover:underline" target="_blank">🔗2 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- 기아 "미국서 자동차 최대한 생산한 것"… 美 현지화 전략 '악셀’ -->
+        <section>
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">기아 "미국서 자동차 최대한 생산한 것"… 美 현지화 전략 '악셀’</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 생산기술팀, 영업팀</strong>  (사업 확대 방안)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>기아는 미국 시장에서 3열 SUV 텔루라이드, 중형 세단 K4·K5 등 인기 모델을 보유함.</li>
+            <li>미국 내 생산 비중을 높여 관세 리스크(예: 25% 관세 부과 가능성)에 선제 대응 중이며, 현재 미국 판매 차량 중 현지 생산 비율은 약 39.4%임.</li>
+            <li>조지아주 웨스트포인트 공장과 현대차그룹 메타플랜트 아메리카(HMGMA)에서 생산 확대함.</li>
+            <li>현지 생산 강화와 공급망 투자(현대차·기아, 총 투자 약 29조원 및 57,000여 명 고용) 진행 중임.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.econovill.com/news/articleView.html?idxno=687915" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Accordion 4: GM, 관세 위기 속 내수 확대와 위기극복 전략 추진 -->
+    <div class="border-b pb-6">
+      <button id="accordionIcon4" onclick="toggleAccordion(4)" class="w-full text-left px-4 py-3 bg-blue-100 hover:bg-blue-200 rounded-md focus:outline-none">
+        <span id="accordionIconText4" class="text-xl font-semibold">▶</span> GM, 관세 위기 속 내수 확대와 위기극복 전략 추진
+      </button>
+      <div id="accordionContent4" class="hidden mt-4 bg-white p-6 rounded-md shadow">
+        <!-- 제목 -->
+        <h2 class="text-2xl font-bold mb-4">GM, 관세 위기 속 내수 확대와 위기극복 전략 추진</h2>
+        
+        <!-- 🔎 핵심 요약 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔎</span>
+            <span class="text-xl font-semibold">핵심 요약</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>군산 공장 폐쇄 여파</li>
+            <li>미국 관세 및 철수설</li>
+            <li>노사 및 본사 대응</li>
+            <li>내수 확대 전략</li>
+          </ul>
+        </div>
+
+        <!-- 🏢 GM 한눈에 보기 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🏢</span>
+            <span class="text-xl font-semibold">GM 한눈에 보기</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>설립 : 1908년 9월 16일</li>
+            <li>시총 : 487.55억 USD / 2024년 영업이익 : 149억 USD</li>
+            <li>주요 사업 : Buick, Cadillac, Chevrolet, GMC 등 다양한 자동차 브랜드 소유, 전기차 및 자율 주행</li>
+          </ul>
+        </div>
+
+        <!-- “하루 아침에 수천명 잘렸다”...GM철수 트라우마 다시 떠올리는 창원·부평 공장 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">“하루 아침에 수천명 잘렸다”...GM철수 트라우마 다시 떠올리는 창원·부평 공장</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 기획조정팀, 경영혁신팀, 사업개발팀</strong>  (미국 관세 부과 대응, 한국 사업 지속 가능성)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>2018년 한국GM 군산공장의 갑작스런 폐쇄로 약 3000여 명(근로자·협력업체 포함)이 일자리를 잃으며 지역 경제에 장기적으로 심각한 타격이 발생함.</li>
+            <li>미국의 25% 관세 부과 위협에 GM이 다시 한국에서 철수할 가능성이 제기되며, 생산 경쟁력과 노조 문제 등 내부 요인도 철수설에 영향을 미침.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.mk.co.kr/news/business/11265178" class="text-blue-600 hover:underline" target="_blank">🔗1 관련 기사 자세히 보기</a>
+            <span class="mx-2"></span>
+            <a href="https://m.news.nate.com/view/20250317n01810" class="text-blue-600 hover:underline" target="_blank">🔗2 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- “위기극복” 손잡은 GM노사… 美본사부터 달려갔다 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">“위기극복” 손잡은 GM노사… 美본사부터 달려갔다</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: R&D부서, 전략기획팀</strong>  (미래전략 및 미국 내 경쟁력 강화)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>도널드 트럼프 대통령의 관세 부과 예고로 철수설이 확산되자, GM 한국사업장의 노사 대표단이 미국 본사 방문 등 공동 대응에 나섰음.</li>
+            <li>2027년 이후의 생산 차종 계획 등 미래 전략을 논의하며, 한국사업장의 중요성과 경쟁력을 본사에 적극 어필하려는 의도가 강조됨.</li>
+            <li>미국 내 최신 산업 동향과 생산 기술 벤치마킹을 통해 위기 극복 방안을 모색하는 움직임이 확인됨.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.munhwa.com/news/view.html?no=2025031701071407220001" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- 관세 폭탄에 철수 대신 내수 택한 GM 한국사업장…'설' 잠재울 수 있을까 -->
+        <section>
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">관세 폭탄에 철수 대신 내수 택한 GM 한국사업장…'설' 잠재울 수 있을까</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 생산기술팀, 영업팀</strong>(현지 생산 확대, 관세 대응)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>GM 한국사업장은 미국 관세 위협에 따른 철수설 대신, 내수 시장 회복과 확장을 최우선 과제로 삼고 있음.</li>
+            <li>‘먼슬리 프로그램’ 등 소비자 접점 강화 및 전국 대리점·서비스센터 네트워크 확대를 통해 고객 만족도 제고에 주력하고 있음.</li>
+            <li>신차(특히 캐딜락 중심)의 추가 출시 및 슈퍼 크루즈 같은 첨단 기능 도입을 통해 프리미엄 브랜드 경쟁력을 확보하려는 전략이 돋보이며, 현대차그룹과의 협력 가능성도 언급됨.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.electimes.com/news/articleView.html?idxno=351752" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Accordion 5: Ford, 철저한 품질 관리와 극한 도전을 통한 혁신 전략 -->
+    <div class="border-b pb-6">
+      <button id="accordionIcon5" onclick="toggleAccordion(5)" class="w-full text-left px-4 py-3 bg-blue-100 hover:bg-blue-200 rounded-md focus:outline-none">
+        <span id="accordionIconText5" class="text-xl font-semibold">▶</span> Ford, 철저한 품질 관리와 극한 도전을 통한 혁신 전략
+      </button>
+      <div id="accordionContent5" class="hidden mt-4 bg-white p-6 rounded-md shadow">
+        <!-- 제목 -->
+        <h2 class="text-2xl font-bold mb-4">Ford, 철저한 품질 관리와 극한 도전을 통한 혁신 전략</h2>
+        
+        <!-- 🔎 핵심 요약 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔎</span>
+            <span class="text-xl font-semibold">핵심 요약</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>Ford 레인저 품질 검사</li>
+            <li>포드 F-시리즈 슈퍼 듀티, 남극 대륙 횡단</li>
+            <li>브롱코 헤리티지 에디션 – 클래식과 첨단의 만남</li>
+          </ul>
+        </div>
+
+        <!-- 🏢 Ford Motor Company 한눈에 보기 - 둥근 테두리 박스 -->
+        <div class="rounded-md border p-4 mb-6 bg-gray-50">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🏢</span>
+            <span class="text-xl font-semibold">Ford Motor Company (미국) 한눈에 보기</span>
+          </div>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>설립 : 1903년 6월 16일</li>
+            <li>시총 : 394.25억 USD / 2024년 영업이익 : 52억 USD</li>
+            <li>주요 사업 : 내연기관 차량, 전기차, 플러그인 하이브리드 등 다양한 파워트레인 및 픽업트럭, SUV</li>
+          </ul>
+        </div>
+
+        <!-- 포드 레인저, 출고 전 6단계 품질 검사 거친다 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">포드 레인저, 출고 전 6단계 품질 검사 거친다</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 품질관리부서</strong> (품질관리체계 벤치마킹)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>포드 레인저는 출고 전 고객 승인 라인(CAL)을 통해 암실 검사, 수작업 검사, 시스템 점검, AI 시각 검사, 폭우 시뮬레이션, 그리고 삐걱임 및 잡음 테스트 트랙 등 총 6단계의 철저한 품질 검사를 수행함.</li>
+            <li>이를 통해 차량의 각종 결함 및 누수, 서스펜션 및 스티어링 시스템의 이상 유무를 꼼꼼히 확인하여 고객에게 최상의 주행 경험을 보장하고자 함.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.autodaily.co.kr/news/articleView.html?idxno=529015" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- 포드 슈퍼 듀티, 남극 3,000마일 탐험 도전 -->
+        <section class="mb-6">
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">포드 슈퍼 듀티, 남극 3,000마일 탐험 도전</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 영업팀, 사업 개발팀</strong> (사업 확대 방안, 브랜드 이미지)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>개조된 포드 F-시리즈 슈퍼 듀티 트럭으로 전직 포드 퍼포먼스 드라이버와 탐험가들이 남극 대륙 3,000마일 횡단에 도전하며 극한 환경에서의 차량 성능과 내구성을 시험함.</li>
+            <li>탐험대는 극지 환경에서 얼음층 두께 측정, 우주 방사선 영향 분석 등 다양한 과학적 연구를 병행하며, 최대 8,000파운드의 보급품 견인 능력을 확인함.</li>
+            <li>아이슬란드의 아크틱 트럭스가 대대적으로 개조한 차량을 통해 극한 조건에 최적화된 성능을 확보함.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.autodaily.co.kr/news/articleView.html?idxno=529014" class="text-blue-600 hover:underline" target="_blank">🔗1 관련 기사 자세히 보기</a>
+            <span class="mx-2"></span>
+            <a href="https://www.hankyung.com/article/202503177749P" class="text-blue-600 hover:underline" target="_blank">🔗2 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+
+        <!-- “이 차가 실제로 나온다고?” .. 벤츠·BMW 안 부러운 모습으로 부활한 신차 SUV의 ‘정체’ -->
+        <section>
+          <div class="flex items-center mb-2">
+            <span class="mr-2 text-xl">🔹</span>
+            <span class="text-xl font-semibold">“이 차가 실제로 나온다고?” .. 벤츠·BMW 안 부러운 모습으로 부활한 신차 SUV의 ‘정체’</span>
+          </div>
+          <p class="ml-8 text-gray-700 mb-2">
+            <strong>✅ 관련부서: 사업 개발팀, R&D 부서</strong>  (사업 확대 방안 및 기술 차별화)
+          </p>
+          <ul class="list-disc ml-8 text-gray-700">
+            <li>1960년대 초창기 브롱코 디자인에서 영감을 받은 클래식 외관과 현대 기술(첨단 서스펜션, 디지털 계기판, 터치 디스플레이, 최신 운전자 보조 시스템)이 조화된 특별 모델임.</li>
+            <li>오프로드 전용 HOSS 2.0 서스펜션 및 빌스타인 PSD 댐퍼 채용으로 험로 주행 성능 강화와 도심 주행의 실용성을 동시에 만족시킴.</li>
+            <li>미국 내 판매가는 약 4만 9,475달러부터 시작되며, 국내 출시 여부는 미정이나 소비자들의 높은 관심을 받고 있음.</li>
+          </ul>
+          <div class="ml-8 mt-2">
+            <a href="https://www.msn.com/ko-kr/news/other/%EC%9D%B4-%EC%B0%A8%EA%B0%80-%EC%8B%A4%EC%A0%9C%EB%A1%9C-%EB%82%98%EC%98%A8%EB%8B%A4%EA%B3%A0-%EB%B2%A4%EC%B8%A0-bmw-%EC%95%88-%EB%B6%80%EB%9F%AC%EC%9A%B4-%EB%AA%A8%EC%8A%B5%EC%9C%BC%EB%A1%9C-%EB%B6%80%ED%99%9C%ED%95%9C-%EC%8B%A0%EC%B0%A8-suv%EC%9D%98-%EC%A0%95%EC%B2%B4/ar-AA1AZEvv" class="text-blue-600 hover:underline" target="_blank">🔗 관련 기사 자세히 보기</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 자바스크립트 함수 -->
+  <script>
+    function toggleAccordion(index) {
+      const content = document.getElementById("accordionContent" + index);
+      const iconText = document.getElementById("accordionIconText" + index);
+      if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        iconText.textContent = "▼";
+      } else {
+        content.classList.add("hidden");
+        iconText.textContent = "▶";
+      }
+    }
+  </script>
+</body>
+</html>
