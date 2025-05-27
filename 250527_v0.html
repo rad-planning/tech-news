@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>뉴스 카드 레이아웃</title>
+  <style>
+    /* 전체 레이아웃 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* 카드 컨테이너: flex로 가로 정렬, 줄넘김 허용 */
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* 각 카드 스타일 */
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 이미지 */
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 텍스트 영역 */
+    .card-content {
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-content h2 {
+      font-size: 1.1rem;
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+    .card-content p.excerpt {
+      flex: 1;
+      font-size: 0.95rem;
+      color: #444;
+      margin: 0 0 15px;
+    }
+    .card-content .meta {
+      font-size: 0.85rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>최신 뉴스 카드 예시</h1>
+
+  <div class="cards-container">
+
+    <!-- 카드 1 -->
+    <div class="card">
+      <img src="images/ev_california.jpg" alt="EV와 금문교 이미지">
+      <div class="card-content">
+        <h2>캘리포니아는 EV 규칙이 롤백된 후 '법정에서 만나요'라고 말합니다.</h2>
+        <p class="excerpt">
+          미국 상원은 캘리포니아의 2035년 휘발유 자동차 금지를 종료하기로 투표했습니다. 국가를 이제 반격을 준비하고 있습니다.
+        </p>
+        <div class="meta">글쓴이 수브라타 코타리 · 5월 23일</div>
+      </div>
+    </div>
+
+    <!-- 카드 2 -->
+    <div class="card">
+      <img src="images/tesla_fsd.jpg" alt="Tesla FSD 화면 이미지">
+      <div class="card-content">
+        <h2>* 이 글은 허핑턴포스트US의 A Tesla Executive Just Gave A Brutal Assessment Of Full Self-Driving를 번역, 편집한 것입니다.</h2>
+        <p class="excerpt">
+          또한 폭스바겐은 자사의 전기차 중 하나가 내년에 내연기관(ICE)와 동등한 가격에 도달할 것이며 신차 재고가 급격히 줄어들고 있다고 밝혔습니다.
+        </p>
+        <div class="meta">글쓴이 톰 스텁프 · 5월 22일</div>
+      </div>
+    </div>
+
+    <!-- 카드 3 -->
+    <div class="card">
+      <img src="images/ev_trump.jpg" alt="검은색 EV 차량 이미지">
+      <div class="card-content">
+        <h2>* 이 글은 허핑턴포스트US의 Trump Could Crack Down On EVs Even More With New Fuel Economy Rules를 번역, 편집한 것입니다.</h2>
+        <p class="excerpt">
+          트럼프는 새로운 연비 규칙에서 EV를 겨냥하고 있습니다. 또한 Sony-Honda Afeela 프로젝트는 Honda 딜러로부터 압력을 받고 있습니다.
+        </p>
+        <div class="meta">글쓴이 톰 스텁프 · 5월 20일</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
