@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>주요 산업별 이슈</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2em;
+      color: #222;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    /* 공통 탭 버튼 스타일 */
+    .tab-button {
+      display: inline-block;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #555;
+      border-radius: 20px;
+      padding: 10px 25px;
+      margin: 0 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .tab-button:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* 복합소재 탭 (녹색 계열) */
+    .tab-button.composite {
+      border-color: #80c080;
+      color: #2e7d32;
+    }
+    .tab-button.composite.active {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+      border-color: #1b5e20;
+    }
+
+    /* 자동차 탭 (파란 계열) */
+    .tab-button.automotive {
+      border-color: #80a0d6;
+      color: #1565c0;
+    }
+    .tab-button.automotive.active {
+      background-color: #90caf9;
+      color: #0d47a1;
+      border-color: #0d47a1;
+    }
+    .section {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section.active { display: block; }
+
+    .article-box {
+      position: relative;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 16px 20px 40px;
+      margin: 20px 0;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transition: box-shadow 0.2s ease, transform 0.1s ease, background-color 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .article-box:hover {
+      background-color: #fafafa;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* 복합소재 기사 제목/키워드 (녹색 계열) :contentReference[oaicite:0]{index=0} */
+    #composite .article-title {
+      font-weight: bold;
+      font-size: 1.15em;
+      color: #1b5e20;
+      margin-bottom: 8px;
+    }
+    #composite .keyword {
+      border: 1px solid #aed581;
+      background-color: #e8f5e9;
+      color: #33691e;
+    }
+
+    /* 자동차 기사 제목/키워드 (파란 계열) */
+    #automotive .article-title {
+      font-weight: bold;
+      font-size: 1.15em;
+      color: #0d47a1;
+      margin-bottom: 8px;
+    }
+    #automotive .keyword {
+      border: 1px solid #64b5f6;
+      background-color: #e1f5fe;
+      color: #1565c0;
+    }
+
+    .keywords { margin-top: 8px; }
+    .keyword {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin: 4px 6px 0 0;
+      font-size: 0.85em;
+    }
+    .article-summary {
+      margin-top: 8px;
+      font-size: 0.95em;
+      color: #777;
+    }
+    .article-date {
+      position: absolute;
+      bottom: 12px;
+      left: 20px;
+      font-size: 0.9em;
+      color: #757575;
+    }
+
+    .oem-tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .oem-button {
+      border: 1px solid #a3d5ff;
+      border-radius: 8px;
+      padding: 8px 16px;
+      margin: 0 6px;
+      background-color: #e6f7ff;
+      cursor: pointer;
+      font-weight: bold;
+      color: #005b9f;
+      transition: background-color 0.2s ease;
+      font-size: 0.9em;
+    }
+    .oem-button.active {
+      background-color: #b3e5fc;
+    }
+    .oem-button:hover {
+      background-color: #d0f0ff;
+    }
+    .oem-section {
+      display: none;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .oem-section.active {
+      display: block;
+    }
+    .oem-article-box {
+      border: 1px solid #d0eaff;
+      border-radius: 8px;
+      padding: 6px 16px;
+      margin: 10px 0;
+      background-color: #fcfaff;
+      transition: background-color 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .oem-article-box:hover {
+      background-color: #f0f4ff;
+    }
+    .oem-article-title {
+      font-size: 0.9em;
+      color: #004a80;
+    }
+    .oem-article-date {
+      font-size: 0.85em;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    </style>
+</head>
+<body>
+    <h1>주요 산업별 이슈</h1>
+
+    <div class="tabs">
+        <div id="btn-composite" class="tab-button active" onclick="showSection('composite')">
+            복합소재
+        </div>
+        <div id="btn-automotive" class="tab-button" onclick="showSection('automotive')">
+            자동차
+        </div>
+    </div>
+
+    <!-- 복합소재 섹션 -->
+    <section id="composite" class="section active">
+        <h2>🧪복합소재</h2>
+
+        <a href="https://www.plastickorea.co.kr/news/articleList.html?sc_sub_section_code=S2N1&view_type=sm" target="_blank" class="article-box">
+            <div class="article-title">
+                하이브리드 돌풍과 미래 모빌리티 실증 통해 친환경·스마트 생태계
+            </div>
+            <div class="keywords">
+                <span class="keyword">#복합소재</span>
+                <span class="keyword">#하이브리드</span>
+                <span class="keyword">#미래모빌리티</span>
+                <span class="keyword">#친환경</span>
+                <span class="keyword">#스마트</span>
+            </div>
+            <p class="article-summary">
+                이 기사에서는 하이브리드 구조를 적용한 신개념 복합소재를 소개하며, 미래 모빌리티 실증사업 사례를 통해 친환경·스마트 생태계 구축이 어떻게 이뤄지고 있는지 분석합니다. 특히 소재 경량화와 내구성 향상을 동시에 달성한 기술적 특징을 집중 조명합니다.
+            </p>
+            <p class="article-date">2025.05.18</p>
+        </a>
+
+        <a href="https://www.plastickorea.co.kr/news/articleList.html?sc_sub_section_code=S2N1&view_type=sm" target="_blank" class="article-box">
+            <div class="article-title">
+                복합소재 제조 공정에서 친환경 원료 사용 비중을 높이고, 스마트 팩토리 시스템을 연계한 사례
+            </div>
+            <div class="keywords">
+                <span class="keyword">#공정개선</span>
+                <span class="keyword">#친환경원료</span>
+                <span class="keyword">#스마트팩토리</span>
+                <span class="keyword">#협력모델</span>
+                <span class="keyword">#시장전망</span>
+            </div>
+            <p class="article-summary">
+                복합소재 제조 공정에서 친환경 원료 사용 비중을 높이고, 스마트 팩토리 시스템을 연계한 사례를 다룹니다. 또한, 관련 산업 간 협력 모델을 통해 생태계 전반에 미치는 경제적 효과를 예측하고, 향후 과제와 시장 전망을 제시합니다.
+            </p>
+            <p class="article-date">2025.05.18</p>
+        </a>
+
+        <a href="https://www.plastickorea.co.kr/news/articleList.html?sc_sub_section_code=S2N1&view_type=sm" target="_blank" class="article-box">
+            <div class="article-title">
+                하이브리드 복합소재 개발 참여 기업 및 연구기관 협업 현황과 실증 테스트 결과
+            </div>
+            <div class="keywords">
+                <span class="keyword">#R&amp;D</span>
+                <span class="keyword">#협업</span>
+                <span class="keyword">#실증테스트</span>
+                <span class="keyword">#기술상용화</span>
+            </div>
+            <p class="article-summary">
+                하이브리드 복합소재 개발에 참여한 주요 기업 및 연구기관의 협업 현황을 정리하고, 실증 테스트 결과를 통해 나타난 주요 성과와 한계를 상세히 다룹니다. 이를 기반으로 향후 R&amp;D 방향과 기술 상용화 전략을 제안합니다.
+            </p>
+            <p class="article-date">2025.05.18</p>
+        </a>
+    </section>
+
+    <!-- 자동차 섹션 -->
+    <section id="automotive" class="section">
+        <h2>🚗자동차</h2>
+
+        <a href="https://www.plastickorea.co.kr/news/articleList.html?sc_sub_section_code=S2N1&view_type=sm" target="_blank" class="article-box">
+            <div class="article-title">
+                하이브리드 파워트레인과 미래 모빌리티 실증을 통한 친환경·스마트 생태계 전환
+            </div>
+            <div class="keywords">
+                <span class="keyword">#자동차</span>
+                <span class="keyword">#하이브리드파워트레인</span>
+                <span class="keyword">#미래모빌리티</span>
+                <span class="keyword">#충전인프라</span>
+            </div>
+            <p class="article-summary">
+                하이브리드 파워트레인 기술을 중심으로 자동차 업계가 친환경·스마트 모빌리티로 전환하는 과정과 실증 사업 사례를 다룹니다. 전방위적으로 확장 중인 충전 인프라 구축 현황과 정부 정책 지원 방안을 분석합니다.
+            </p>
+            <p class="article-date">2025.05.18</p>
+        </a>
+
+        <a href="https://www.plastickorea.co.kr/news/articleList.html?sc_sub_section_code=S2N1&view_type=sm" target="_blank" class="article-box">
+            <div class="article-title">
+                주요 완성차·부품사 협력으로 하이브리드·전기차 플랫폼 활용 모델 출시 및 시장 전망
+            </div>
+            <div class="keywords">
+                <span class="keyword">#완성차</span>
+                <span class="keyword">#부품사</span>
+                <span class="keyword">#전기차</span>
+                <span class="keyword">#시장전망</span>
+            </div>
+            <p class="article-summary">
+                주요 완성차 업체들이 하이브리드 및 전기차 플랫폼을 활용해 새로운 모델을 출시한 사례와, 이를 뒷받침하는 부품사·원부자재사들의 대응 전략을 소개합니다. 시장 수요 예측과 가격 경쟁력 분석도 함께 포함합니다.
+            </p>
+            <p class="article-date">2025.05.18</p>
+        </a>
+
+        <a href="https://www.plastickorea.co.kr/news/articleList.html?sc_sub_section_code=S2N1&view_type=sm" target="_blank" class="article-box">
+            <div class="article-title">
+                자율주행 기술 실증 및 스마트 시티 연계 로드맵과 글로벌 경쟁력 확보 전략
+            </div>
+            <div class="keywords">
+                <span class="keyword">#자율주행</span>
+                <span class="keyword">#스마트시티</span>
+                <span class="keyword">#글로벌경쟁력</span>
+            </div>
+            <p class="article-summary">
+                미래 모빌리티 실증을 위한 자율주행 기술 시험 결과와, 이를 적용한 신차 개발 로드맵을 제시합니다. 또한 스마트 시티와의 연계 방안 및 글로벌 시장에서의 경쟁력 확보 전략을 설명합니다.
+            </p>
+            <p class="article-date">2025.05.18</p>
+        </a>
+
+        <!-- OEM 탭 버튼들 -->
+        <div class="oem-tabs">
+            <div id="btn-hkmc" class="oem-button" onclick="showOEM('hkmc')">HKMC</div>
+            <div id="btn-gm" class="oem-button" onclick="showOEM('gm')">GM</div>
+            <div id="btn-benz" class="oem-button" onclick="showOEM('benz')">BENZ</div>
+            <div id="btn-bmw" class="oem-button" onclick="showOEM('bmw')">BMW</div>
+            <div id="btn-stellantis" class="oem-button" onclick="showOEM('stellantis')">Stellantis</div>
+            <div id="btn-byd" class="oem-button" onclick="showOEM('byd')">BYD</div>
+        </div>
+
+        <!-- HKMC 기사 목록 -->
+        <div id="oem-hkmc" class="oem-section">
+            <p class="oem-article-date">2025.05.25</p>
+            <a href="https://n.news.naver.com/article/015/0005136118?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    이 차 나오기만 기다렸다…미친 연비에 '인기 폭발'
+                </div>
+            </a>
+            <a href="https://www.yna.co.kr/view/AKR20250525005800003?input=1195m" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    현대차 전용전기차 아이오닉 시리즈, 글로벌 누적판매 50만대
+                </div>
+            </a>
+            <p class="oem-article-date">2025.05.20</p>
+            <a href="https://www.hyundai.co.kr/news/CONT0000000000177226" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    현대자동차·기아, 워커힐과 함께 생활 밀착형 미래 모빌리티 생태계 구축
+                </div>
+            </a>
+        </div>
+
+        <!-- GM 기사 목록 -->
+        <div id="oem-gm" class="oem-section">
+            <p class="oem-article-date">2025.05.15</p>
+            <a href="https://n.news.naver.com/article/001/0013456789?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    GM, 전기차 신모델 공개…주행거리 600km
+                </div>
+            </a>
+            <a href="https://n.news.naver.com/article/001/0013456790?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    GM, 완전자율주행 시범운행 시작…2026년 양산 계획
+                </div>
+            </a>
+        </div>
+
+        <!-- BENZ 기사 목록 -->
+        <div id="oem-benz" class="oem-section">
+            <p class="oem-article-date">2025.05.10</p>
+            <a href="https://n.news.naver.com/article/014/0004971234?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    벤츠, 신형 전기 SUV 출시…고성능 배터리 탑재
+                </div>
+            </a>
+            <a href="https://n.news.naver.com/article/014/0004971235?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    벤츠, 완전자율주행 레벨 4 탑재 계획 발표
+                </div>
+            </a>
+        </div>
+
+        <!-- BMW 기사 목록 -->
+        <div id="oem-bmw" class="oem-section">
+            <p class="oem-article-date">2025.05.12</p>
+            <a href="https://n.news.naver.com/article/123/0009876543?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    BMW, 전기차 배터리 혁신 기술 공개
+                </div>
+            </a>
+            <a href="https://n.news.naver.com/article/123/0009876544?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    BMW, 자율주행 탑재 플래그십 세단 출시 예고
+                </div>
+            </a>
+        </div>
+
+        <!-- Stellantis 기사 목록 -->
+        <div id="oem-stellantis" class="oem-section">
+            <p class="oem-article-date">2025.05.08</p>
+            <a href="https://n.news.naver.com/article/109/0005678901?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    Stellantis, 전기 픽업트럭 공개…내구성 강화
+                </div>
+            </a>
+            <a href="https://n.news.naver.com/article/109/0005678902?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    Stellantis, 스마트 팩토리 도입 확대 계획
+                </div>
+            </a>
+        </div>
+
+        <!-- BYD 기사 목록 -->
+        <div id="oem-byd" class="oem-section">
+            <p class="oem-article-date">2025.05.05</p>
+            <a href="https://n.news.naver.com/article/015/0005137001?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    BYD, 신형 전기버스 출시…주행거리 450km
+                </div>
+            </a>
+            <a href="https://n.news.naver.com/article/015/0005137002?type=main" target="_blank" class="oem-article-box">
+                <div class="oem-article-title">
+                    BYD, 태양광 충전 시스템 개발 착수
+                </div>
+            </a>
+        </div>
+
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            // 탭 버튼 활성/비활성 토글
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + sectionId).classList.add('active');
+            // 섹션 보이기/숨기기
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function showOEM(oemId) {
+            // OEM 버튼 활성/비활성 토글
+            document.querySelectorAll('.oem-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + oemId).classList.add('active');
+            // OEM 섹션 보이기/숨기기
+            document.querySelectorAll('.oem-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('oem-' + oemId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
