@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주요 산업별 이슈</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/pretendard.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'pretendard': ['Pretendard', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Pretendard', system-ui, sans-serif;
+            word-break: keep-all;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-pretendard">
+    <div class="min-h-screen py-6 px-3">
+        <div class="max-w-6xl mx-auto">
+            <!-- Main Title -->
+            <h1 class="text-3xl lg:text-4xl font-bold text-center mb-10 text-gray-900">
+                주요 산업별 이슈
+            </h1>
+
+            <!-- Industry Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                
+                <button id="btn-automotive" class="tab-button px-3 py-2.5 font-semibold rounded-lg border transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2
+                       
+                         
+                         bg-blue-100 border-blue-500 text-blue-800 focus:ring-blue-300
+                       " onclick="showSection('automotive')">
+                    Automotive
+                </button>
+                
+                <button id="btn-composite" class="tab-button px-3 py-2.5 font-semibold rounded-lg border transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2
+                       
+                         bg-white border-gray-300 text-gray-600 hover:bg-gray-50
+                       " onclick="showSection('composite')">
+                    Composite
+                </button>
+                
+            </div>
+
+            
+            <!-- 자동차 Section -->
+            <!-- 자동차 Section -->
+            <section id="automotive" class="section ">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Section Header -->
+                    <!-- <div class="text-center mb-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 flex items-center justify-center gap-3">
+                            <span class="text-4xl"></span>
+                            자동차
+                        </h2>
+                    </div> -->
+
+                    <!-- Main Articles -->
+                    <div class="space-y-4 mb-10">
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        현대모비스, 최근 3년간 특허 7,500여건 출원… 미래차 핵심 분야만 3,000건
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #현대모비스
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #미래차특허
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #연구개발 투자 확대
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 현대모비스는 최근 3년간 7,500여 건의 특허를 출원했고, 이 중 약 40%가 전동화·자율주행 등 미래 모빌리티 핵심 기술 분야</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 지난해에만 2,300여 건 출원했으며 그중 1,000건 이상이 미래 기술 관련 특허</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 차량용 스마트키, HUD 기술 등 미래차 보안 및 디스플레이 관련 특허가 대표적</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 전담 조직 중심의 특허 협업 체계를 운영하며, 해외 연구소 및 현지 대리인을 통한 글로벌 권리화도 추진</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 2025년 연구개발 투자를 2조 원 확대하고 임직원 대상 ‘발명의 날’을 개최하는 등 창의적 연구문화를 조성</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.26</span>
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000177541"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        현대모비스, 전국에 현대자동차ㆍ기아 A/S부품 공급 위한 2번째 대규모 물류센터 개소!
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #현대모비스
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #부품물류허브
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #자동화재생에너지
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 축구장 11개 규모(약 81,000㎡)의 대형 물류 거점으로 152개 차종, 약 17만 5천개 품목을 관리</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 전국 1,000여 개 유통망을 통해 하루 14,000건의 A/S 부품 입·출고를 처리</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 소형 부품 자동화 창고 도입으로 처리 효율이 2~3배 향상.</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• RE100 달성을 위해 태양광 패널 설치를 추진하며 재생에너지 전환 구체화</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 아산센터와 함께 전국 A/S 부품의 양대 허브로 기능하며, 현대차·기아의 고객 신뢰 확보에 중점</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.30</span>
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000177810"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        현대자동차, 2025년 5월 35만 1,174대 판매
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #현대차
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #전년대비 감소
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #해외시장 불확실
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 현대차는 2025년 5월 전 세계 시장에서 총 35만 1,174대를 판매했으며, 이는 전년 동월 대비 1.7% 감소한 수치</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 국내 시장은 전년 동월 대비 5.2% 줄어든 5만 8,966대를 판매했으며, 그랜저·아반떼·쏘나타 중심으로 총 1만 5,923대 세단 판매</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• RV 부문에서는 팰리세이드(7,682대), 싼타페, 투싼 등을 포함해 총 2만 3,232대 판매</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 제네시스 브랜드는 총 9,517대를 판매했으며, 포터·스타리아 등 상용차와 중대형 트럭 및 버스도 포함</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 해외 시장 판매는 29만 2,208대로 0.9% 감소했으며, 지정학적 리스크 등으로 불확실성이 지속될 것으로 예상</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 향후 하이브리드 판매 유지와 차세대 모델 투입을 통해 판매 모멘텀을 확보할 계획</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.02</span>
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000177915"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        기아, 2025년 5월 26만 9,148대 판매
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #기아
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #SUV중심성장
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #친환경차라인업확대
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 기아는 2025년 5월 글로벌 시장에서 총 26만 9,148대를 판매해 전년 대비 1.7% 증가</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 국내 시장은 4만 5,003대로 2.4% 감소했으며, 쏘렌토(7,734대)가 주요 수출 모델</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 승용차는 K5, K8, 레이 중심으로 1만 2,664대를 판매했고, RV는 카니발, EV3, 타스만을 포함해 총 2만 9,596대를 기록</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 상용차는 봉고Ⅲ 등을 포함해 총 2,743대 판매</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 해외 판매는 전년 대비 2.6% 증가한 22만 3,817대를 기록했으며, 스포티지(4만 2,796대) 중심으로 호조</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 기아는 EV4, 타스만 출시에 따른 판매 증가세를 유지 중이며, PV5·EV5 등 친환경차 라인업 확대 계획도 병행 중</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.02</span>
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000177922"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        현대차 中 공장, 해외 수출로 활기…2분기 흑자 기대
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #현대차
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #중국공장수출전환
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #EV수출전략
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 현대차그룹은 2025년 1~4월 중국 내 생산 차량 수출량이 전년 대비 94.7% 증가</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 현대차 수출량은 543% 증가했으며, 아반떼·쏘나타 택시가 주요 수출 모델</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 기아는 3.5만 대에서 5.4만 대로 수출을 확대했으며, 페가스와 쏘넷이 주력</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 중국 내 내수 판매는 26% 감소했으나 수출 전환으로 실적을 방어</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• EV5 부분변경 등 현지 맞춤 전략도 함께 추진 중</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.08</span>
+                                        <a href="https://www.hankyung.com/article/2025060808201"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        [단독] 차값 1400만원 싸진다…삼성·LG, 美서 배터리 '승부수'
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #GM
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #LFP배터리전환
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #가격경쟁력강화
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• GM이 전기차 가격 인하를 위해 삼원계 배터리 대신 LFP 도입을 요청하자 LG·삼성 모두 미국 공장 내 LFP 생산 라인 구축을 결정</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 삼성SDI는 인디애나 공장, LG는 테네시 공장 일부를 LFP로 전환</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• LFP는 기존 삼원계보다 20~30% 저렴해 GM이 실버라도 등 주요 모델 가격을 최대 1만 달러 인하 가능</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 향후 LFP 수요가 확대될 것으로 예상되며, 포드·스텔란티스도 유사 전략 추진 전망</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 미국 IRA 대응을 위한 탈중국 공급망 확보 과제 부상</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.27</span>
+                                        <a href="https://www.hankyung.com/article/202505279060i"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        美 25% 관세에도…한국GM 5월 수출 전년보다 0.1%↑
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #한국GM
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #소형SUV수출
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #내수부진대응
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 한국GM의 5월 해외 수출은 48,621대로 전년 대비 0.1% 증가했으며, 트랙스 크로스오버가 월 최대 판매량 기록</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 내수 판매는 39.8% 급감해 트레일블레이저 등 소형차 위주로 부진</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 대미 수출 80% 의존도 속에서도 관세 영향은 최소화</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 내수 회복을 위해 트랙스·트레일블레이저 대상 콤보 할부 및 유류비 지원 프로그램을 운영</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.02</span>
+                                        <a href="https://www.hankyung.com/article/202506021057i"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        벤츠·BMW 러브콜에…'K전장' 수출 속도낸다
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #BMW
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #K전장수출
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #B2B기술신뢰
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 팅크웨어가 BMW·벤츠와 대규모 계약을 체결해 2025년 BMW 수주 금액이 461억 원으로 80% 증가</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 가격 경쟁력보다 기술력과 무사고 B2B 실적 기반으로 신뢰 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• EU 중심의 블랙박스 수요가 확대되며 전장 기업의 글로벌 진출도 가속화</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.01</span>
+                                        <a href="https://www.sedaily.com/NewsView/2GTWM7SWG5"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        [獨오른 벤츠] “조립 효율↑, 에너지↓”…‘팩토리 56’이 말하는 車 생산 공식
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #BENZ
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #혼류생산
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #디지털팩토리
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 벤츠 진델핑겐 팩토리56은 약 7억3000만 유로가 투입된 최첨단 생산기지</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• S클래스부터 EQS까지 혼류생산이 가능해 공정 유연성 강화</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• AGV, MO360, AR 등 디지털 기술이 집약되어 있으며 400대의 무인 운반 로봇 적용</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 모듈형 조립대 기반의 '풀 플렉스' 시스템은 모듈 교체만으로도 신속한 설비 전환을 가능하게 해 중단 없는 생산 실현</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• ‘360도 커넥티비티’를 통해 개발, 설계, 공급업체, 생산, 고객까지 전 단계가 디지털 기반으로 구축</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.01</span>
+                                        <a href="https://www.dailian.co.kr/news/view/1505600/?sc=Naver"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        BMW그룹 코리아, SK스피드메이트와 BMW·미니 부품 공급협약
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #BMW
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #정비네트워크확장
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #오리지널부품공급
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• BMW그룹 코리아와 SK스피드메이트가 BMW·MINI 오리지널 부품 공급 협약을 체결</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 외부 정비망에서도 인증 부품을 통한 정비가 가능해 신뢰성과 접근성을 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 고연식 차량 보유 고객의 수리 편의를 높이기 위해 최적의 수리 환경을 제공</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 투명한 유통망 확보 및 고객 만족도 제고 전략을 추진</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.28</span>
+                                        <a href="https://www.yna.co.kr/view/AKR20250528066000003"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        글로벌 완성차 지각변동…전통강호 '부진' · 중국 '부상'
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #BYD
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #중국
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #글로벌판매재편
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 2025년 1분기 전 세계 완성차 판매량 2,217만 대 중 75%가 중국에서 발생</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• BYD가 전년 대비 62.7% 증가한 110만 대로 글로벌 7위, 지리가 27.2% 증가한 96만 대로 10위</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 전기차 판매는 38.5%, 플러그인하이브리드는 27.3% 증가하며 친환경차 시장이 빠르게 회복</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 현대차그룹은 하이브리드카 시장 점유율 3위, 전기차 시장 7위</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 보호무역 정책과 관세 인상 등으로 미국 내 가격 조정 부담이 커져 글로벌 업체들의 구조조정 가속</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.03</span>
+                                        <a href="https://www.hankyung.com/article/2025060319121"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        1∼4월 글로벌 전기차 판매 34.4%↑…BYD·지리·테슬라 순
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #글로벌전기차판매량
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #BYD1위
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #현대차7위
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 2025년 1~4월 글로벌 전기차 판매는 580만 8천 대로 전년 동기 대비 34.4% 증가</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• BYD가 124만 2천 대로 1위를 차지했고, 지리가 61만 6천 대로 2위, 테슬라가 42만 2천 대로 3위 기록</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 현대차그룹은 11.0% 증가한 19만 대로 글로벌 7위에 올랐으며, 북미에서 포드·GM 일부 구간을 앞지르며 경쟁력 입증</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 중국 시장 전기차 판매는 43.9% 증가해 글로벌 전기차 점유율 62.2% 기록</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 각 완성차 업체들은 지역별 정책, 브랜드 전략, 공급망 대응 등을 통한 시장 다변화 추진 중</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.05</span>
+                                        <a href="https://www.yna.co.kr/view/AKR20250605051700003?input=1195m"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               
+                               text-blue-600">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             
+                             text-blue-800">
+                                        지난달 수입차 판매량, 테슬라 8년 만에 첫 1위
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #테슬라
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #국내수입차시장
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               
+                               bg-blue-50 text-blue-700 border border-blue-200">
+                                        #모델Y효과
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 2025년 5월 수입차 신규 등록은 28,189대로 전년 동기 대비 16.4% 증가</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 테슬라가 6,570대로 1위를 차지해 한국 진출 후 최초로 수입차 판매 1위를 달성</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 모델Y 주니퍼 출시에 따른 대기 수요를 반영했으며, 4월 판매량 부진(1,447대)을 극복</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 벤츠(6,415대), BMW(6,405대), 포르쉐(1,192대), 렉서스(1,134대) 순</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• BYD 아토3는 513대로 수입 전기차 중 판매 감소세</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.05</span>
+                                        <a href="https://www.hankyung.com/article/2025060580341"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    
+                    <!-- OEM Section -->
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-3">
+                        <!-- OEM Tabs -->
+                        <div class="grid grid-cols-3 justify-center gap-1.5 mb-5">
+                            
+                            <button id="btn-hkmc"
+                                class="oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200
+                             bg-blue-100 border-blue-300 text-blue-800"
+                                onclick="showOEM('hkmc')">
+                                <strong>HKMC</strong>
+                            </button>
+                            
+                            <button id="btn-gm"
+                                class="oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200
+                             bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100"
+                                onclick="showOEM('gm')">
+                                <strong>GM</strong>
+                            </button>
+                            
+                            <button id="btn-benz"
+                                class="oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200
+                             bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100"
+                                onclick="showOEM('benz')">
+                                <strong>BENZ</strong>
+                            </button>
+                            
+                            <button id="btn-bmw"
+                                class="oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200
+                             bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100"
+                                onclick="showOEM('bmw')">
+                                <strong>BMW</strong>
+                            </button>
+                            
+                            <button id="btn-stellantis"
+                                class="oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200
+                             bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100"
+                                onclick="showOEM('stellantis')">
+                                <strong>Stellantis</strong>
+                            </button>
+                            
+                            <button id="btn-byd"
+                                class="oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200
+                             bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100"
+                                onclick="showOEM('byd')">
+                                <strong>BYD</strong>
+                            </button>
+                            
+                        </div>
+
+                        
+                        <!-- HKMC Articles -->
+                        <div id="oem-hkmc" class="oem-section ">
+                            <div class="space-y-3">
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.02</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000173341" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대모비스, 주요 차량 부품에 친환경 알루미늄 사용한다!
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.03</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000173341" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                제네시스, 〈엑스 그란 쿠페〉·〈엑스 그란 컨버터블〉 콘셉트 세계 최초 공개
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.06</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.mk.co.kr/news/business/11284154" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대차 “일단 두 달은 가격 그대로”…‘25% 관세’에 자동차업계 눈치 작전
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.07</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000173770" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아-고용노동부-오토큐, 전기차 정비인력 양성 위한 MOU 체결
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000173764" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대모비스, 인도에 통합 R&D 센터 개소, 글로벌 S/W 연구개발 허브로 육성한다!
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.14</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000174490" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대모비스, 전기차 배터리셀 발화 시, 자동 진압하는 기술 나왔다!
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.17</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000174766" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아 EV3, ‘2025 세계 올해의 차’ 선정
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.18</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.sedaily.com/NewsView/2GRKILYBS5" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                함께 하는 즐거움을 품은 전기 SUV - 기아 EV9 GT[별별시승]
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.21</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000175086" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차그룹, 포스코그룹과 업무 협약 체결
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.22</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.donga.com/news/Economy/article/all/20250422/131463315/2" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                도요타-GM에 구글까지… 경쟁자와 손잡는 현대차 ‘프레너미’
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000175214" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차, ‘2025 코나’ 출시
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.24</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000175406" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차, 2025년 1분기 경영실적 발표
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000175281" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차·기아, 인도공과대와 손잡고 배터리 핵심 기술 개발 나선다
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.25</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250425_0003154026" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아, 1분기 매출 28조원 '역대 최대'…이익률 10% 유지
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.27</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/2025042787231" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대차·기아 '엄지 척'…K중고차, 러·UAE서 인기 폭발한 까닭
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.29</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.sedaily.com/NewsView/2GRPL8EZHZ" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                한국산 부품 22종 '숨통'…현대차·기아도 원가 부담 줄었다
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250429_0003157915" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아 전기차 1위…'EV 시리즈' 3형제가 이끈다
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.02</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000176003" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차, 2025년 4월 35만 3,338대 판매
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000175993" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아, 2025년 4월 27만 4,437대 판매
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000175933" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아, 니로 신규 트림 ‘베스트 셀렉션’ 출시
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.05</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.news1.kr/industry/auto-industry/5773045" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아 타스만, 출시 3주 만에 1천대 돌파…"구매자 75% 개인"
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.06</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/2025050653141" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대차 해외개척 효과…車부품 수출 25배 늘었다
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.09</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000176186" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차 아이오닉 9·기아 EV3 ‘2025 탑기어 전기차 어워즈’ 수상
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hankyung.com/article/2025050933791" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대차, 美 공장 지었더니…국내 車 일자리 10만개 '쑥'
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.13</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000176359" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차, ‘2025 아이오닉 5’·‘2025 코나 일렉트릭’ 출시
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.15</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000176552" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차 사우디 생산법인 〈HMMME〉 착공식 개최
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.16</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://biz.heraldcorp.com/article/10488784?ref=naver" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                [단독] 현대차, 新디젤엔진 차량 내놓는다…글로벌 친환경 정책 변화 유연 대응
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250516_0003178443" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대차, 美 공장 가동률 102%…관세 부과 전 생산 확대
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000176739" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차·기아-서울대학교, 소프트웨어 중심 공장 구현 위한 MOU 체결
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.18</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/202505189735g" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                벤츠 EQS SUV도 제쳤다…기아 EV9, 독일 車 매체 극찬
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.22</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000177226" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                현대자동차·기아, 인천공항과 AI 기반 전기차 자동 충전 로봇 실증
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hyundai.co.kr/news/CONT0000000000177395" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                기아 EV3, 유럽 안전성 평가서 최고 안전 등급(★★★★★) 획득
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.hankyung.com/article/2025052324491" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                훈풍 부는 유럽 전기차…현대차·기아 '질주'
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://n.news.naver.com/article/015/0005136118?type=main" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                "이 차 나오기만 기다렸다"…미친 연비에 '인기 폭발'
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.25</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.sedaily.com/NewsView/2GSXOQKD0J" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                [단독] 규제 허들에…기아 '배터리 구독' 좌초
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- GM Articles -->
+                        <div id="oem-gm" class="oem-section hidden">
+                            <div class="space-y-3">
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.09</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://view.asiae.co.kr/article/2025040913272050131" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                GM과 전기밴 플랫폼 논의한 현대차, 상표권도 출원
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.16</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.etoday.co.kr/news/view/2462443" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                “럭셔리 SUV의 정점” 캐딜락, ‘더 뉴 에스컬레이드’ 국내 출시
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.17</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.impacton.net/news/articleView.html?idxno=14774" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                트럼프 역풍에도…GM, 전기차 전환에 350억달러 투자 ‘승부수’
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.yna.co.kr/view/AKR20250423057800003?input=1195m" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                SM그룹 남선알미늄, 미국 GM '올해의 공급사' 14년 연속 선정
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.inews24.com/view/1837098" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                한국GM, 국내 판매 부진...올해 내수용 생산 더 줄일 듯
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.24</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.sedaily.com/NewsView/2GRN8JLXL6" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                GM, 시장 경쟁력 위해 LFP 배터리 채용 결정
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.30</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.news1.kr/world/general-world/5770066" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                “GM도 완성차 50%가 수입산”…부품 관세 완화에도 자동차 기업 '비상'
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.02</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250502_0003163317" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                한국GM, 4월 판매량 4만1644대…전년대비 6.3%↓
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.08</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/2025050808481" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                “캐딜락을 법인차량으로”…상의·암참, 한국GM과 협약
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.segye.com/newsView/20250508508541?OutUrl=naver" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                LG엔솔, GM 합작공장 단독 소유권 확보…“북미 생산능력 극대화”
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.14</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/2025051431861" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                中 LFP 대체' LG엔솔-GM, 차세대 보급형 LMR 양산
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.16</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.edaily.co.kr/News/Read?newsId=02614166642169576&mediaCodeNo=257&OutLnkChk=Y" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                코아비스, 美 GM 최우수 협력사 선정
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://biz.chosun.com/industry/company/2025/05/23/PA3OIYBGHFBO7EULDRGNFPRNUE" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                전동화한다던 GM의 변심… 난감해진 韓 배터리 업계
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- BENZ Articles -->
+                        <div id="oem-benz" class="oem-section hidden">
+                            <div class="space-y-3">
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.14</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250414_0003137708" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                벤츠코리아, 'GLE 350 4MATIC' 출시…“편안한 주행”
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.25</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.munhwa.com/article/11501527?ref=naver" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                벤츠E클래스, 1분기 수입차 판매 1위
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.02</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.yna.co.kr/view/AKR20250502002300082?input=1195m" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                벤츠, 관세 폭탄에 미국 현지생산 늘리기로
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.03</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.shinailbo.co.kr/news/articleView.html?idxno=2047413" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                미국 생산 자동차, 수입 부품 50%↑…벤츠 90%·BMW 73%
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.09</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/202505091731i" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                “X7·에스컬레이드 비켜”…SUV S클 벤츠 GLS 580 타보니
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://apnews.com/article/mercedes-north-american-headquarters-atlanta-66afd293ffd0bec68b6f03b8718d04fc" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                Mercedes-Benz will establish its North American HQ in Georgia, moving hundreds of jobs
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- BMW Articles -->
+                        <div id="oem-bmw" class="oem-section hidden">
+                            <div class="space-y-3">
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.07</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://view.asiae.co.kr/article/2025040712105935714" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                BMW코리아, 전기 그란 쿠페 'i4' 국내 출시…7830만원부터
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.08</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.autodaily.co.kr/news/articleView.html?idxno=529858" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                “BMW 마저 중국에 넘어가나?” 알리바바 AI 탑재하는 차세대 전기차
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.17</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.moneys.co.kr/article/2025041709385128495" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                BMW 웃고, 벤츠·폭스바겐 울었다… 독일차 3사 엇갈린 희비
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.02</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.yna.co.kr/view/AKR20250502002300082?input=1195m" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                벤츠, 관세 폭탄에 미국 현지생산 늘리기로
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.08</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.mk.co.kr/news/business/11312276" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                ‘창립 30주년’ BMW코리아, 5월 한정판 M4·Z4·M440i·M340i 선봬
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.15</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250514_0003175889" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                BMW MINI, 판매 반전…전기차 신차로 성장 '속도'
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- Stellantis Articles -->
+                        <div id="oem-stellantis" class="oem-section hidden">
+                            <div class="space-y-3">
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.04</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.edaily.co.kr/News/Read?newsId=04083606642133824&mediaCodeNo=257&OutLnkChk=Y" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                관세 후폭풍…스텔란티스, 미국 공장서 900명 해고
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.08</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="http://autotimes.co.kr/detail.php?number=682424&thread=27" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                스텔란티스코리아, 푸조 308 ‘스마트 하이브리드’ 출시
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.18</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://biz.chosun.com/industry/car/2025/04/18/ICCV7Q3ZUZG3JBQT7NNUYKCB2Y" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                CEO 부재에 경영난… 車 판매 세계 5위 스텔란티스 ‘흔들’
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.25</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.ndtv.com/auto/stellantis-announces-entry-of-leapmotor-ev-maker-in-indian-market-deets-8252181" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                Stellantis Announces Entry Of Leapmotor EV-Maker In Indian Market
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.autoexpress.co.uk/news/366656/stellantis-solid-state-ev-battery-breakthrough-bring-more-range-and-faster-top-ups" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                Stellantis solid-state EV battery 'breakthrough' to bring more range and faster top-ups
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.30</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.stellantis.com/en/news/press-releases/2025/april/first-quarter-2025-shipments-and-revenues" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                First Quarter 2025 Shipments and Revenues
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.02</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.sedaily.com/NewsView/2GSN38U9LO" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                시트로엥, 더 쾌적한 공간과 기능으로 무장한 2세대 C5 에어크로스 공개
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.06</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.media.stellantis.com/em-en/jeep/press/introducing-the-all-new-jeep-compass-redefining-adventure-with-distinctive-design-legendary-capability-versatility-and-cutting-edge-technology" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                Introducing the All-New Jeep® Compass. Redefining Adventure with Distinctive Design, Legendary Capability, Versatility, and Cutting-Edge Technology
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.09</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.media.stellantis.com/em-en/abarth/press/abarth-honored-with-best-mini-car-award-for-abarth-500e-in-hamburg" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                Abarth honored with “Best Mini Car” Award for Abarth 500e in Hamburg
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.15</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.news1.kr/world/usa-canada/5783799" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                中시장 떠나는 스텔란티스 "어떤 해외 브랜드도 못 버틸 것"
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.21</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.g-enews.com/ko-kr/news/article/news_all/202505210940214469fbbec65dfb_1/article.html" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                LG엔솔-스텔란티스 합작 넥스트스타, 캐나다 윈저 공장서 '무사고 800만 시간' 쌓아
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.cbtnews.com/stellantis-delays-2026-doge-charger-daytona-ev-production-amid-tariff-uncertainty/" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                Stellantis delays 2026 Dodge Charger Daytona EV production amid tariff uncertainty
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- BYD Articles -->
+                        <div id="oem-byd" class="oem-section hidden">
+                            <div class="space-y-3">
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.15</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.sedaily.com/NewsView/2GRJ4V9RF4" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                전 세계 전기차 1위 BYD '아토3' 풀린다…보조금 적용 땐 2000만 원대
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.mk.co.kr/news/business/11292340" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                [단독] 삼성, 中BYD에 자율차 핵심부품 공급
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.22</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.edaily.co.kr/News/Read?newsId=03981926642138744&mediaCodeNo=257&OutLnkChk=Y" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                BYD, 日 경차시장에 도전장…갈라파고스 뛰어넘나
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.04.26</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.seoulfn.com/news/articleView.html?idxno=555622" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                국내 진출 100일 BYD, 한국 안착 넘어 성장 속도 낸다
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2024.04.30</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.mk.co.kr/news/business/11305214" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                이제 전기차는 BYD”…글로벌 판매량, 2분기 연속 테슬라 제쳤다
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.04</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.etnews.com/20250504000047" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                “中 상장사 290곳 연구개발비 2000억원”…BYD, R&D 10.4조
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.09</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://news.mt.co.kr/mtview.php?no=2025050915354635890" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                리튬 가격 10분의 1 됐다…중국 BYD, 칠레 투자 계획 백지화
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.11</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.ekn.kr/web/view.php?key=20250511023375470" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                BYD 저가공세 한국서도 통했다…월 1000대 판매 ‘눈 앞’
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.14</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.newsis.com/view/NISX20250514_0003175889" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                한국선 최다판매, 日엔 전용 경차 출시… 보폭 넓히는 BYD
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.16</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.reuters.com/world/china/chinas-byd-plans-establish-european-centre-hungary-ceo-says-2025-05-15" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                China's BYD plans to establish European centre in Hungary, CEO says
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.21</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hankyung.com/article/2025052286191" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                BYD 소형 전기 SUV 아토3, 출시 한 달 만에 수입차 11위 등극
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.23</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://www.hani.co.kr/arti/economy/global/1199010.html" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                중국 BYD 전기차, 월간 유럽 판매량 처음으로 테슬라 제쳤다
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-xs font-medium text-gray-500 mb-2 px-1">2025.05.25</h4>
+                                    <div class="space-y-1.5">
+                                        
+                                        <a href="https://zdnet.co.kr/view/?no=20250525002221" target="_blank"
+                                            class="block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors group">
+                                            <div
+                                                class="text-blue-800 group-hover:text-blue-900 font-medium text-sm leading-snug">
+                                                북미 관세 장벽 가로막힌 BYD, 남미 ESS 시장 정조준
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </section>
+            
+            <!-- 복합소재 Section -->
+            <section id="composite" class="section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Section Header -->
+                    <!-- <div class="text-center mb-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 flex items-center justify-center gap-3">
+                            <span class="text-4xl"></span>
+                            복합소재
+                        </h2>
+                    </div> -->
+
+                    <!-- Main Articles -->
+                    <div class="space-y-4 mb-10">
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        Thermoplastic composite pipes provide 59% reduction in H₂ distribution CO₂ emissions
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #TCP
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #HDPE
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #GFRP
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• HDPE 내·외피·GFRP 보강·비투과성 폴리머 장벽의 4층 적층 구조로 100 bar 고압 수소 누출 저감 성능을 제공</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 1.2 km 연속 생산이 가능한 열융합 스풀링 공정을 도입해 현장 연결부를 최소화함으로써 설치 시간을 단축</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• ±2 °C 온도제어 다단계 열융합 및 AI 기반 실시간 테이프 배치·압력 균일도 검사를 통해 결합 강도를 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 재료·제조·운송 단계 GWP가 11 kg CO₂-eq인 반면 강관은 40–50 kg CO₂-eq로, 운용·탈착 시 배출 60–70% 저감 가능</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.04.23</span>
+                                        <a href="https://www.compositesworld.com/articles/thermoplastic-composite-pipes-provide-59-reduction-in-h2-distribution-co2-emissions"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        Syensqo(사이언스코), PEEK 필름기술, EV 성능 및 지속가능성 향상으로 수상
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #PEEK필름
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #슬랏라이너
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #경량화
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 800 V 시스템 검증 Ajedium™ PEEK 필름으로 구리 충진률 및 열전도도를 증가시킨 모터 슬롯 라이너 복합소재</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 습기 관리장치 제거를 통해 시스템 경량화 및 공간 활용도를 높이는 설계 혁신을 달성</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 필름 두께 50 μm 이하에서 1 W/mK 이상의 열확산 성능을 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 2025 PACE Pilot Innovation to Watch에 선정되어 시장에서 기술 검증</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.08</span>
+                                        <a href="https://www.plastickorea.co.kr/news/articleView.html?idxno=24799"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        Porsche develops TABASKO method for lightweight vehicle series production
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #TABASKO
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #CFPP
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #시리즈생산
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 탄소섬유 테이프·PP-GFx 소재 복합 압축성형으로 벽 두께를 최대 20% 축소하면서 강성은 동등하게 유지</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 자동 삽입·진공 고정 테이프 핸들링 설비를 활용해 연 80,000개 양산 대응 처리량 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 포스트컨슈머 플라스틱을 재활용한 PP 기반 매트릭스를 채용해 원재료 CO₂ 배출량 저감</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 6건의 특허(재료 구조·툴·공정 순서)를 통해 대량생산 특화 트랩 제조기술 인증을</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.09</span>
+                                        <a href="https://www.compositesworld.com/news/porsche-develops-tobasko-method-for-lightweight-vehicle-series-production"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        Prepreg compression molding supports higher-rate propeller manufacturing
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #CFRP프리프레그
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #압축성형
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #UAV프로펠러
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• Zünd CNC 커팅된 CF/에폭시 프리프레그와 PMI 폼 코어 기반 전처리·진공 데블킹·전기식 프레스 단계 통합</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 135 °C·7–10분 스냅큐어 경화 사이클로 기존 6–24시간 대비 생산주기를 60배 단축</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 0.3–3 m 크기별 맞춤 상·하부 프리폼을 동시 제작해 공정 유연성 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 3D 광학·초음파 검사·오버스핀·FEA 검증을 도입한 품질관리 체계로 항공·방산용 인증 준비</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.30</span>
+                                        <a href="https://www.compositesworld.com/articles/prepreg-compression-molding-supports-higher-rate-propeller-manufacturing"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        카이스트, 고밀도 다기능 구조성 탄소섬유 복합소재 배터리 개발
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #탄소섬유
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #다기능소재
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #구조성배터리
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 에폭시 매트릭스·이온성 액체 전해질 하이브리드로 섬유 체적률 160% 및 전극 접촉면적 극대화</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 진공압축성형 공정으로 균일 박리·무기포 전극층을 구현해 기계강성·전기용량을 병용하는 특성 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 60 °C·10,000시간 가속노화 시험에서 기계적·전기화학적 성능이 100% 회복될 것으로 예측되어 장기 안정성 보장</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 항공·모빌리티 내·외장 구조부품 일체형 에너지 저장소재 개발 기반을 마련</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.01.09</span>
+                                        <a href="https://www.plastickorea.co.kr/news/articleView.html?idxno=24502"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        [기술강좌] 폴리머 대결 PPO 대 PA66
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #PPO
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #PA66
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #열가소성
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 비결정질 PPE/HIPS 블렌드 PPO는 Tg 215 °C, 뛰어난 치수안정성과 습기흡수율 <0.1%로 복합소재 기초재에 적합</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 반결정질 PA66은 Tm 260 °C, 인장강도 85 MPa, 내마모성 및 유기용매 저항성이 우수한 고부하 구조재</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• PPO는 광범위 산·알칼리 저항성과 습기 불포화 안정성으로 의료·정밀기기용 하우징에 적합</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• PA66은 낮은 점도와 높은 유동성으로 얇은 벽·복잡 게이트 사출금형 적용 우수</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.05.01</span>
+                                        <a href="https://www.plastickorea.co.kr/news/articleView.html?idxno=24764"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-box group bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer overflow-hidden"
+                            onclick="toggleDetails(this)">
+
+                            <!-- Article Header -->
+                            <div class="p-2.5">
+                                <div class="flex items-start gap-3 items-center">
+                                    <span class="toggle-icon text-lg mt-0.5 transition-transform duration-300 
+                               text-green-600
+                               ">▶</span>
+                                    <h3 class="article-title font-semibold text-base leading-tight group-hover:text-opacity-80 transition-colors
+                             text-green-800
+                             ">
+                                        [기술강좌] 금형온도 중요성과 디젤효과 해결
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="keywords hidden px-3 pb-2">
+                                <div class="flex flex-wrap gap-1.5">
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #금형온도
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #열전달
+                                    </span>
+                                    
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                               bg-green-50 text-green-700 border border-green-200
+                               ">
+                                        #디젤효과
+                                    </span>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Article Details -->
+                            <div class="article-details hidden px-3 pb-3">
+                                <div class="pt-3 border-t border-gray-100">
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 금형 캐비티 내 실제 강재 온도 측정 및 냉각수 입·출구 ΔT 3~5°C 이하 유지를 통해 성형품 치수 안정성 확보</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 고정측·가동측 비대칭 열전달 시 회로별 냉각유체 온도·유량을 개별 제어해 열 균일화를 실현</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 난류(Reynolds 수 6,000–8,000) 유지용 툴링을 활용해 금형 내부 과열·냉점을 방지</p>
+                                    
+                                    <p class="text-gray-700 text-sm leading-relaxed mb-2.5 last:mb-0">• 배기경로 깊이·개수 최적화(PE/PP 0.33–0.762mm, ABS 0.635–0.965mm) 및 형체력 조정으로 디젤효과를 방지</p>
+                                    
+
+                                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
+                                        <span class="text-xs text-gray-500 font-medium">2025.06.05</span>
+                                        <a href="https://www.plastickorea.co.kr/news/articleView.html?idxno=24857"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-xs font-medium transition-colors"
+                                            onclick="event.stopPropagation();">
+                                            🔗 기사 원문
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+            </section>
+            
+        </div>
+    </div>
+
+    <script>
+        function showSection(id) {
+            // Remove active classes from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.className = btn.className.replace(/bg-\w+-\d+|border-\w+-\d+|text-\w+-\d+|focus:ring-\w+-\d+/g, '');
+                btn.className += ' bg-white border-gray-300 text-gray-600 hover:bg-gray-50';
+            });
+
+            // Add active classes to clicked button based on industry type
+            const activeBtn = document.getElementById('btn-' + id);
+            activeBtn.className = activeBtn.className.replace(/bg-\w+-\d+|border-\w+-\d+|text-\w+-\d+|hover:bg-\w+-\d+/g, '');
+
+            if (id === 'composite') {
+                activeBtn.className += ' bg-green-100 border-green-500 text-green-800 focus:ring-green-300';
+            } else if (id === 'automotive') {
+                activeBtn.className += ' bg-blue-100 border-blue-500 text-blue-800 focus:ring-blue-300';
+            } else {
+                activeBtn.className += ' bg-gray-100 border-gray-500 text-gray-800 focus:ring-gray-300';
+            }
+
+            // Show/hide sections
+            document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function toggleDetails(box) {
+            const isActive = box.classList.toggle('active');
+            const icon = box.querySelector('.toggle-icon');
+            const keywords = box.querySelector('.keywords');
+            const details = box.querySelector('.article-details');
+
+            if (isActive) {
+                icon.textContent = '▼';
+                // icon.style.transform = 'rotate(90deg)';
+                keywords.classList.remove('hidden');
+                details.classList.remove('hidden');
+            } else {
+                icon.textContent = '▶';
+                // icon.style.transform = 'rotate(0deg)';
+                keywords.classList.add('hidden');
+                details.classList.add('hidden');
+            }
+        }
+
+        function showOEM(oemId) {
+            // Update OEM button states
+            document.querySelectorAll('.oem-button').forEach(btn => {
+                btn.className = 'oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200 bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100';
+            });
+            document.getElementById('btn-' + oemId).className = 'oem-button px-3 py-1.5 text-sm font-medium rounded-md border transition-all duration-200 bg-blue-100 border-blue-300 text-blue-800';
+
+            // Show/hide OEM sections
+            document.querySelectorAll('.oem-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById('oem-' + oemId).classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
