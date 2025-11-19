@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sLLM 상세 진화 3D 모델</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Noto Sans KR 폰트 로드 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display.swap">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #111827; /* 다크 모드 배경 */
+            color: #f3f4f6;
+            overflow: hidden; /* 스크롤바 숨기기 */
+        }
+        canvas {
+            display: block;
+        }
+        /* 네비게이션 버튼 UI */
+        #navigation {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem; /* 8px */
+            background-color: rgba(31, 41, 55, 0.8); /* gray-800 */
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            z-index: 10;
+        }
+        .nav-button {
+            background-color: #4b5563; /* gray-600 */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #6b7280; /* gray-500 */
+        }
+        /* 각 단계별 색상 */
+        #btn-overview { background-color: #4b5563; }
+        #btn-stage1 { background-color: #3b82f6; }
+        #btn-stage2 { background-color: #10b981; }
+        #btn-stage3 { background-color: #8b5cf6; }
+    </style>
+</head>
+<body>
+    <!-- 3D 캔버스 영역 -->
+    <div id="canvas-container"></div>
+
+    <!-- 상단 네비게이션 버튼 -->
+    <div id="navigation">
+        <button id="btn-overview" class="nav-button">전체 보기</button>
+        <button id="btn-stage1" class="nav-button">1. 기반 모델</button>
+        <button id="btn-stage2" class="nav-button">2. 중간 모델</button>
+        <button id="btn-stage3" class="nav-button">3. 최종 sLLM</button>
+    </div>
+
+    <!-- TWEEN.js (애니메이션 라이브러리) 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.min.js"></script>
+    <!-- three.js 및 OrbitControls 라이브러리 임포트 -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js'; // OrbitControls 임포트
+
+        let scene, camera, renderer, controls; // controls 변수 추가
+        let clock = new THREE.Clock();
+        
+        // 애니메이션 객체 저장
+        let stage1Particles = [];
+        let stage2QASprites = [];
+        let stage3RAGFlow = { line1: null, line2: null, line3: null, textQuery: null, textAnswer: null, phase: 0 };
+        let vectorDBGroup; // Vector DB 그룹을 위한 변수
+        
+        // 카메라 상태 정의 (TWEEN용)
+        const cameraStates = {
+            overview: { x: 0, y: 25, z: 120, tx: 0, ty: 0, tz: 0 },
+            stage1: { x: -60, y: 15, z: 35, tx: -60, ty: 0, tz: 0 },
+            stage2: { x: 0, y: 15, z: 40, tx: 0, ty: 0, tz: 0 },
+            stage3: { x: 60, y: 15, z: 45, tx: 60, ty: 0, tz: 0 }
+        };
+
+        // --- 초기화 함수 ---
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x111827);
+            scene.fog = new THREE.Fog(0x111827, 80, 250);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(cameraStates.overview.x, cameraStates.overview.y, cameraStates.overview.z); // 초기 카메라 위치
+
+            // Renderer
+            const container = document.getElementById('canvas-container');
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Controls (OrbitControls 복원)
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.target.set(cameraStates.overview.tx, cameraStates.overview.ty, cameraStates.overview.tz);
+
+            // --- 조명 ---
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            directionalLight.position.set(10, 20, 15);
+            scene.add(directionalLight);
+
+            // --- 3D 세계 생성 ---
+            createWorld();
+
+            // --- 네비게이션 버튼 이벤트 ---
+            document.getElementById('btn-overview').addEventListener('click', () => goToStage(cameraStates.overview));
+            document.getElementById('btn-stage1').addEventListener('click', () => goToStage(cameraStates.stage1));
+            document.getElementById('btn-stage2').addEventListener('click', () => goToStage(cameraStates.stage2));
+            document.getElementById('btn-stage3').addEventListener('click', () => goToStage(cameraStates.stage3));
+
+            // --- 창 크기 조절 ---
+            window.addEventListener('resize', onWindowResize);
+            
+            // --- 애니메이션 시작 ---
+            animate();
+        }
+
+        // --- 3D 객체 생성 ---
+        function createWorld() {
+            const lineMaterial = new THREE.LineBasicMaterial({ color: 0x4b5563 }); // Gray-600
+
+            // --- 1단계: 기반 모델 (General Training) ---
+            const stage1Pos = new THREE.Vector3(-60, 0, 0);
+            const stage1Model = createModelSphere(0x3b82f6); // Blue
+            stage1Model.position.copy(stage1Pos);
+            scene.add(stage1Model);
+            
+            const label1 = createTextSprite("1. 기반 모델 (Base Model) 🧮", { fontSize: 28 });
+            label1.position.set(stage1Pos.x, stage1Pos.y + 12, stage1Pos.z);
+            scene.add(label1);
+
+            // 데이터 (모집단)
+            const dataLabel1 = createTextSprite("데이터: 모집단", { fontSize: 20 });
+            dataLabel1.position.set(stage1Pos.x, stage1Pos.y - 8, stage1Pos.z + 10);
+            scene.add(dataLabel1);
+            
+            // 1단계 파티클 (데이터 주입)
+            const particleGeo = new THREE.SphereGeometry(0.2, 8, 8);
+            const particleMat = new THREE.MeshBasicMaterial({ color: 0xa5b4fc }); // Indigo-300
+            for(let i=0; i<30; i++) {
+                const particle = new THREE.Mesh(particleGeo, particleMat);
+                particle.position.set(
+                    stage1Pos.x + (Math.random() - 0.5) * 30, 
+                    stage1Pos.y + (Math.random() - 0.5) * 20, 
+                    stage1Pos.z + 15 + Math.random() * 10
+                );
+                stage1Particles.push(particle);
+                scene.add(particle);
+            }
+
+            // --- 2단계: SFT (Fine-Tuning) ---
+            const stage2Pos = new THREE.Vector3(0, 0, 0);
+            const stage2Model = createModelSphere(0x10b981); // Green
+            stage2Model.position.copy(stage2Pos);
+            scene.add(stage2Model);
+            
+            const label2 = createTextSprite("2. 중간 모델 (SFT) 📚", { fontSize: 28 });
+            label2.position.set(stage2Pos.x, stage2Pos.y + 12, stage2Pos.z);
+            scene.add(label2);
+            
+            const dataLabel2 = createTextSprite("가상 주제: 전기차배터리 하우징용 소재개발", { fontSize: 20 });
+            dataLabel2.position.set(stage2Pos.x, stage2Pos.y - 8, stage2Pos.z + 10);
+            scene.add(dataLabel2);
+
+            // 2단계 Q&A 스프라이트
+            const qaExamples = [
+                "Q: 소재의 기본 수지는?", 
+                "A: PA66과 30% 유리섬유...",
+                "Q: T/C 3가지는?",
+                "A: 1. V-0 난연 2. 저온 충격...",
+                "Q: A와 B의 난연 차이는?",
+                "A: A는 기화, B는 차단 메커니즘..."
+            ];
+            qaExamples.forEach((text, i) => {
+                const isQ = text.startsWith("Q:");
+                const sprite = createTextSprite(text, { 
+                    fontSize: 16, 
+                    backgroundColor: isQ ? 'rgba(239, 68, 68, 0.7)' : 'rgba(96, 165, 250, 0.7)' 
+                });
+                sprite.position.set(
+                    stage2Pos.x + (i % 2 === 0 ? -15 : 15) + (Math.random() - 0.5) * 10,
+                    stage2Pos.y + (Math.floor(i / 2) * -5) + 5,
+                    stage2Pos.z + 20 + Math.random() * 5
+                );
+                stage2QASprites.push(sprite);
+                scene.add(sprite);
+            });
+
+            // --- 3단계: RAG (Optimized sLLM) ---
+            const stage3Pos = new THREE.Vector3(60, 0, 0);
+            const stage3Model = createModelSphere(0x8b5cf6); // Violet
+            stage3Model.position.copy(stage3Pos);
+            scene.add(stage3Model);
+            
+            const label3 = createTextSprite("3. 최종 sLLM (Specialist) 🌟", { fontSize: 28 });
+            label3.position.set(stage3Pos.x, stage3Pos.y + 12, stage3Pos.z);
+            scene.add(label3);
+            
+            // Vector DB (3D 클러스터)
+            const dbPosition = new THREE.Vector3(stage3Pos.x + 25, stage3Pos.y, stage3Pos.z);
+            vectorDBGroup = createVectorDBCloud();
+            vectorDBGroup.position.copy(dbPosition);
+            scene.add(vectorDBGroup);
+            
+            const dbLabel = createTextSprite("Vector DB (특허)", { fontSize: 18 });
+            dbLabel.position.set(dbPosition.x, dbPosition.y + 10, dbPosition.z); // 라벨 위치 조정
+            scene.add(dbLabel);
+
+            // RAG 흐름용 객체 (초기에는 숨김)
+            const queryPos = new THREE.Vector3(stage3Pos.x - 25, stage3Pos.y + 5, stage3Pos.z);
+            stage3RAGFlow.textQuery = createTextSprite("Q: 최근 난연 기술 트렌드는?", { fontSize: 20, backgroundColor: 'rgba(217, 119, 6, 0.7)' });
+            stage3RAGFlow.textQuery.position.copy(queryPos);
+            stage3RAGFlow.textQuery.visible = false;
+            scene.add(stage3RAGFlow.textQuery);
+            
+            const answerPos = new THREE.Vector3(stage3Pos.x - 25, stage3Pos.y - 5, stage3Pos.z);
+            stage3RAGFlow.textAnswer = createTextSprite("A: (RAG 기술로 전문가 답변 생성...)", { fontSize: 20, backgroundColor: 'rgba(16, 185, 129, 0.7)' });
+            stage3RAGFlow.textAnswer.position.copy(answerPos);
+            stage3RAGFlow.textAnswer.visible = false;
+            scene.add(stage3RAGFlow.textAnswer);
+
+            const lineMat = new THREE.LineBasicMaterial({ color: 0xfacc15, linewidth: 2 });
+            stage3RAGFlow.line1 = createAnimatedLine(queryPos, stage3Model.position, lineMat);
+            stage3RAGFlow.line2 = createAnimatedLine(stage3Model.position, dbPosition, lineMat); // DB 위치로 연결
+            stage3RAGFlow.line3 = createAnimatedLine(dbPosition, stage3Model.position, lineMat); // DB 위치에서 시작
+            
+            scene.add(stage3RAGFlow.line1, stage3RAGFlow.line2, stage3RAGFlow.line3);
+
+            // --- 경로 선 ---
+            const pathPoints = [stage1Pos, stage2Pos, stage3Pos];
+            const pathGeometry1 = new THREE.BufferGeometry().setFromPoints([pathPoints[0], pathPoints[1]]);
+            scene.add(new THREE.Line(pathGeometry1, lineMaterial));
+            const pathGeometry2 = new THREE.BufferGeometry().setFromPoints([pathPoints[1], pathPoints[2]]);
+            scene.add(new THREE.Line(pathGeometry2, lineMaterial));
+        }
+        
+        // --- 헬퍼 함수 ---
+
+        // 모델 구체 생성
+        function createModelSphere(color) {
+            const geometry = new THREE.SphereGeometry(8, 64, 64);
+            const material = new THREE.MeshStandardMaterial({
+                color: color,
+                roughness: 0.3,
+                metalness: 0.2,
+                transparent: true,
+                opacity: 0.9
+            });
+            // 와이어프레임 추가
+            const wireframe = new THREE.LineSegments(
+                new THREE.WireframeGeometry(geometry),
+                new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.15 })
+            );
+            const model = new THREE.Mesh(geometry, material);
+            model.add(wireframe);
+            return model;
+        }
+
+        // --- 3D Vector DB 클라우드 생성 ---
+        function createVectorDBCloud() {
+            const dbGroup = new THREE.Group();
+            
+            // 1. 전체 공간을 감싸는 반투명 박스
+            const boxGeo = new THREE.BoxGeometry(12, 12, 12);
+            const boxMat = new THREE.MeshStandardMaterial({
+                color: 0x059669, // Emerald
+                transparent: true,
+                opacity: 0.1,
+                side: THREE.DoubleSide
+            });
+            dbGroup.add(new THREE.Mesh(boxGeo, boxMat));
+            
+            const pointGeo = new THREE.SphereGeometry(0.15, 8, 8);
+            
+            // 2. 일반 벡터 (회색)
+            const generalMat = new THREE.MeshStandardMaterial({ color: 0x9ca3af, transparent: true, opacity: 0.6 });
+            for (let i = 0; i < 150; i++) {
+                const point = new THREE.Mesh(pointGeo, generalMat);
+                point.position.set(
+                    (Math.random() - 0.5) * 11,
+                    (Math.random() - 0.5) * 11,
+                    (Math.random() - 0.5) * 11
+                );
+                dbGroup.add(point);
+            }
+            
+            // 3. 관련 클러스터 (노란색, 강조)
+            const clusterMat = new THREE.MeshStandardMaterial({
+                color: 0xfacc15, // Yellow
+                emissive: 0xfacc15,
+                emissiveIntensity: 0.5
+            });
+            const clusterCenter = new THREE.Vector3(2, 2, -2);
+            for (let i = 0; i < 50; i++) {
+                const point = new THREE.Mesh(pointGeo, clusterMat);
+                point.position.copy(clusterCenter).add(
+                    new THREE.Vector3(
+                        (Math.random() - 0.5) * 4,
+                        (Math.random() - 0.5) * 4,
+                        (Math.random() - 0.5) * 4
+                    )
+                );
+                dbGroup.add(point);
+            }
+            
+            return dbGroup;
+        }
+
+        // 텍스트 스프라이트 생성
+        function createTextSprite(text, options = {}) {
+            const {
+                fontSize = 24,
+                fontColor = 'rgba(255, 255, 255, 1)',
+                backgroundColor = 'rgba(0, 0, 0, 0.3)',
+                padding = 8,
+                borderRadius = 6,
+                fontFace = 'Noto Sans KR, sans-serif'
+            } = options;
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            
+            const fontWeight = 500;
+            context.font = `${fontWeight} ${fontSize}px ${fontFace}`;
+            
+            const metrics = context.measureText(text);
+            const textWidth = metrics.width;
+            
+            canvas.width = textWidth + padding * 2;
+            canvas.height = fontSize + padding * 2;
+
+            // 배경
+            context.fillStyle = backgroundColor;
+            context.beginPath();
+            context.moveTo(borderRadius, 0);
+            context.lineTo(canvas.width - borderRadius, 0);
+            context.quadraticCurveTo(canvas.width, 0, canvas.width, borderRadius);
+            context.lineTo(canvas.width, canvas.height - borderRadius);
+            context.quadraticCurveTo(canvas.width, canvas.height, canvas.width - borderRadius, canvas.height);
+            context.lineTo(borderRadius, canvas.height);
+            context.quadraticCurveTo(0, canvas.height, 0, canvas.height - borderRadius);
+            context.lineTo(0, borderRadius);
+            context.quadraticCurveTo(0, 0, borderRadius, 0);
+            context.closePath();
+            context.fill();
+
+            // 텍스트
+            context.font = `${fontWeight} ${fontSize}px ${fontFace}`;
+            context.fillStyle = fontColor;
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+
+            const material = new THREE.SpriteMaterial({ map: texture });
+            const sprite = new THREE.Sprite(material);
+            
+            const scale = 0.15;
+            sprite.scale.set(canvas.width * scale, canvas.height * scale, 1);
+            
+            return sprite;
+        }
+
+        // 애니메이션 라인 생성
+        function createAnimatedLine(start, end, material) {
+            const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
+            const line = new THREE.Line(geometry, material);
+            line.visible = false;
+            return line;
+        }
+
+        // --- 카메라 이동 함수 ---
+        function goToStage(targetState) {
+            const duration = 1500; // 이동 시간
+
+            // TWEEN으로 카메라 위치 애니메이션
+            new TWEEN.Tween(camera.position)
+                .to({ x: targetState.x, y: targetState.y, z: targetState.z }, duration)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .start();
+
+            // TWEEN으로 카메라 타겟(OrbitControls) 애니메이션
+            new TWEEN.Tween(controls.target)
+                .to({ x: targetState.tx, y: targetState.ty, z: targetState.tz }, duration)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .start();
+        }
+
+        // --- 창 크기 조절 ---
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // --- 애니메이션 루프 ---
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            TWEEN.update(); // TWEEN 항상 업데이트
+            controls.update(); // OrbitControls 업데이트
+
+            const delta = clock.getDelta();
+            const time = clock.getElapsedTime();
+
+            // --- 1단계 애니메이션: 데이터 흡수 ---
+            const stage1TargetMesh = scene.children.find(c => c.geometry && c.geometry.type === 'SphereGeometry' && c.position.x === -60);
+            if (stage1TargetMesh) {
+                stage1Particles.forEach((p, i) => {
+                    const speed = 0.5 + Math.random() * 0.5;
+                    p.position.lerp(stage1TargetMesh.position, delta * speed * 0.5);
+                    if (p.position.distanceTo(stage1TargetMesh.position) < 1) {
+                        p.position.set(
+                            stage1TargetMesh.position.x + (Math.random() - 0.5) * 30, 
+                            stage1TargetMesh.position.y + (Math.random() - 0.5) * 20, 
+                            stage1TargetMesh.position.z + 15 + Math.random() * 10
+                        );
+                    }
+                });
+            }
+
+            // --- 2단계 애니메이션: Q&A 주입 ---
+            const stage2TargetMesh = scene.children.find(c => c.geometry && c.geometry.type === 'SphereGeometry' && c.position.x === 0);
+            if (stage2TargetMesh) {
+                stage2QASprites.forEach((s, i) => {
+                    const speed = 0.5 + Math.random() * 0.5;
+                    s.position.lerp(stage2TargetMesh.position, delta * speed * 0.3);
+                    if (s.position.distanceTo(stage2TargetMesh.position) < 2) {
+                        s.position.set(
+                            stage2TargetMesh.position.x + (i % 2 === 0 ? -15 : 15) + (Math.random() - 0.5) * 10,
+                            stage2TargetMesh.position.y + (Math.floor(i / 2) * -5) + 5,
+                            stage2TargetMesh.position.z + 20 + Math.random() * 5
+                        );
+                    }
+                });
+            }
+            
+            // --- 3단계 애니메이션: RAG 흐름 (간단한 FSM) ---
+            // RAG 애니메이션을 3단계 뷰에서만 활성화 (선택적)
+            const distToStage3 = camera.position.distanceTo(new THREE.Vector3(cameraStates.stage3.x, cameraStates.stage3.y, cameraStates.stage3.z));
+            const isNearStage3 = distToStage3 < 1.0; // 카메라가 3단계 위치에 근접했는지 확인
+
+            if (isNearStage3) {
+                const phaseTime = time % 12; // 12초 주기로 반복
+                
+                if (phaseTime < 1) { // 0. 초기화
+                    stage3RAGFlow.textQuery.visible = false;
+                    stage3RAGFlow.textAnswer.visible = false;
+                    stage3RAGFlow.line1.visible = false;
+                    stage3RAGFlow.line2.visible = false;
+                    stage3RAGFlow.line3.visible = false;
+                } else if (phaseTime < 3) { // 1. 질문 -> 모델
+                    stage3RAGFlow.textQuery.visible = true;
+                    stage3RAGFlow.line1.visible = true;
+                } else if (phaseTime < 5) { // 2. 모델 -> DB (Retrieval)
+                    stage3RAGFlow.line2.visible = true;
+                } else if (phaseTime < 7) { // 3. DB -> 모델 (Augmentation)
+                    stage3RAGFlow.line3.visible = true;
+                } else if (phaseTime < 10) { // 4. 모델 -> 답변 (Generation)
+                    stage3RAGFlow.line1.visible = false;
+                    stage3RAGFlow.line2.visible = false;
+                    stage3RAGFlow.line3.visible = false;
+                    stage3RAGFlow.textAnswer.visible = true;
+                } else { // 5. 숨기기
+                    stage3RAGFlow.textQuery.visible = false;
+                    stage3RAGFlow.textAnswer.visible = false;
+                }
+            } else {
+                // 3단계 뷰가 아니면 RAG 텍스트 숨기기
+                stage3RAGFlow.textQuery.visible = false;
+                stage3RAGFlow.textAnswer.visible = false;
+                stage3RAGFlow.line1.visible = false;
+                stage3RAGFlow.line2.visible = false;
+                stage3RAGFlow.line3.visible = false;
+            }
+
+
+            // Vector DB 그룹 회전
+            if (vectorDBGroup) {
+                vectorDBGroup.rotation.y += delta * 0.1;
+                vectorDBGroup.rotation.x += delta * 0.05;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        // --- 실행 ---
+        init();
+
+    </script>
+</body>
+</html>
