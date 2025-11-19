@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EctorDB 3D 벡터 공간 시각화 (가상 벡터)</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- three.js (3D 라이브러리) 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- importmap: three.js 애드온(OrbitControls, CSS2DRenderer) 로드 -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overscroll-behavior: none;
+        }
+        #canvas-container {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            background-color: #0c0c14;
+        }
+        canvas {
+            display: block;
+        }
+        #label-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        /* 클러스터 라벨 스타일 */
+        .label {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-shadow: 0 0 4px black;
+            pointer-events: auto; /* 라벨은 클릭 가능 */
+            cursor: pointer;
+            border: 1px solid #4ade80; /* 클릭 가능함을 녹색 테두리로 표시 */
+            transition: all 0.2s ease-in-out;
+        }
+        .label:hover {
+            background-color: #4ade80;
+            color: #000;
+            transform: scale(1.1);
+            border-color: #fff;
+        }
+        /* 모달 팝업 스타일 */
+        #modal {
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+        }
+        #modal.hidden { opacity: 0; visibility: hidden; }
+        #modal.visible { opacity: 1; visibility: visible; }
+
+        /* 원본 텍스트 <pre> 스타일 */
+        #modal-source-text {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            padding: 12px;
+            border-radius: 6px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        /* === 768차원 가상 시각화 스타일 === */
+        #modal-vector-snippet {
+            background-color: #1a1a2e;
+            color: #a0a0ff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        #modal-vector-visual {
+            display: flex;
+            align-items: flex-end; /* 막대가 아래에서 자라도록 */
+            height: 100px;
+            width: 100%;
+            background-color: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+            padding: 2px;
+            gap: 1px; /* 막대 사이 간격 */
+        }
+        .vector-bar {
+            flex-grow: 1; /* 모든 막대가 동일한 너비를 갖도록 */
+            width: 1px; /* 너비는 flex-grow로 조절됨 */
+            /* JS에서 높이와 배경색 설정 */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <h1 class="text-2xl md:text-3xl font-bold mb-4 text-center text-blue-300">
+            EctorDB 데이터 구조: 3차원 의미 공간(Semantic Space)
+        </h1>
+        <p class="text-center text-gray-400 mb-6">
+            <strong class="text-yellow-300">업데이트:</strong> 3D 공간의 <strong class="text-green-300">녹색 테두리 라벨</strong>을 클릭하면 '가상 벡터'를 분석합니다.
+            <br>
+            (드래그: 회전 / 휠: 확대 / 우클릭: 이동)
+        </p>
+
+        <!-- 3D 캔버스 & 라벨 컨테이너 -->
+        <div id="canvas-container" class="rounded-lg overflow-hidden shadow-2xl">
+            <div id="label-container"></div>
+        </div>
+
+        <!-- 범례 -->
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6 my-6">
+            <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-blue-500 mr-2 border border-blue-300"></span><span class="text-sm">🔵 V_명칭</span></div>
+            <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-green-500 mr-2 border border-green-300"></span><span class="text-sm">🟢 V_요약</span></div>
+            <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-red-500 mr-2 border border-red-300"></span><span class="text-sm">🔴 V_청구항</span></div>
+            <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-yellow-500 mr-2 border border-yellow-300"></span><span class="text-sm">🟡 V_AI요약</span></div>
+        </div>
+
+        <!-- 설명 패널 -->
+        <div class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl mt-8">
+            <div class="space-y-4 text-gray-300">
+                <div>
+                    <strong class="text-blue-300">1. 전체 공간(The 3D Box):</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li> 이 3D 공간은 실제로는 768차원의 <strong class="text-white">'의미 공간(Semantic Space)'</strong>임. </li>
+                        <li> '비슷한 의미'를 가진 문장일수록 이 공간에서 '가까운' 위치에 점으로 찍힘.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <strong class="text-blue-300">2. 특허 1건 = 4개의 점(Cluster):</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>하나의 특허는 4개 필드(명칭, 요약, 청구항, AI요약)가 <strong class="text-white">각각 독립된 768차원 벡터(점)</strong>로 변환, 총 4개의 점으로 표현됨.</li>
+                        <li>"특허 A (EV 배터리 케이스)"의 4개 점(🔵🟢🔴🟡)은 모두 'EV 배터리'라는 동일한 주제를 다루기 때문에, 이 의미 공간에서 서로 매우 가까운 위치에 모여 '하나의 클러스터'를 형성함.</li>
+                        <li>필드를 분리해두면 <strong class="text-white">특정 필드만 선택해 검색할 수 있어, 더 정밀한 검색 결과를 얻을 수 있음.</strong></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <strong class="text-blue-300">3. 벡터 데이터(각 점(🔵🟢🔴🟡)의 의미):</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>VectorDB는 원본 텍스트를 <strong class="text-white">768차원의 복잡한 숫자 배열(벡터)</strong>로 변환하여 저장하며, 이 벡터가 곧 '의미 좌표' 임.</li>
+                        <li><strong class="text-white">벡터화된 원본 텍스트 → 768차원의 벡터(의미좌표) → 768개 차원의 조합</strong>으로 만들어진 고유한 ‘의미 지문’ 형태로 관리됨.</li>
+                        <li>유사한 특허(예: A와 A-1)는 의미 지문의 패턴이 비슷해 벡터가 서로 가까이 위치, 유사도는 높게 계산됨.</li>
+                        <li>주제가 다른 특허(예: A와 B)는 의미 지문의 패턴이 완전히 달라 벡터가 서로 멀리 떨어져 위치, 유사도는 매우 낮게 계산됨.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 클러스터 분석 모달 (Modal) -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-gray-700 rounded-lg shadow-xl p-6 md:p-8 w-full max-w-2xl">
+            <h3 id="modal-title" class="text-2xl font-bold text-green-300 mb-4"></h3>
+            
+            <h4 class="text-lg font-semibold text-gray-200 mb-2">벡터화된 원본 텍스트 (예시)</h4>
+            <pre id="modal-source-text" class="mb-4"></pre>
+
+            <h4 class="text-lg font-semibold text-gray-200 mb-2">768차원 가상 벡터 (Virtual Vector)</h4>
+            
+            <!-- 1. 벡터 스니펫 (텍스트) -->
+            <p class="text-sm text-gray-400 mb-2">
+                이 텍스트는 768차원의 숫자 배열로 변환되어 저장됩니다.
+            </p>
+            <pre id="modal-vector-snippet" class="mb-4"></pre>
+
+            <!-- 2. 가상 시각화 (막대 그래프) -->
+            <p class="text-sm text-gray-400 mb-2">
+                768개 차원이 조합된 고유의 '의미 지문' 가상 시각화
+            </p>
+            <div id="modal-vector-visual" class="mb-6">
+                <!-- JS로 100+개의 막대(bar)가 채워집니다 -->
+            </div>
+            
+            <button id="modal-close" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
+                닫기
+            </button>
+        </div>
+    </div>
+
+    <!-- 3D 시각화 실행 스크립트 -->
+    <script type="module">
+        // three.js 모듈에서 필요한 클래스 임포트
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+        let scene, camera, renderer, labelRenderer, controls;
+        let canvasContainer, labelContainer;
+        
+        // --- 모달 UI 요소 ---
+        let modal, modalTitle, modalSourceText, modalVectorSnippet, modalVectorVisual, modalClose;
+
+        // --- 특허 데이터 (예시) ---
+        const patentData = {
+            "특허 A (EV 배터리 케이스)": {
+                text: "본 발명은 전기차(EV) 배터리 케이스에 관한 것으로, 복수의 배터리 셀을 외부 충격으로부터 보호하고, 효율적인 열 관리를 제공하는 것을 목적으로 한다. 상기 케이스는 경량 고강도 복합 소재로 제조되며, 내부에 냉각 채널을 포함하는 것을 특징으로 한다.",
+                vectorSeed: 0.1 // 시각화 생성을 위한 시드 값 (시뮬레이션용)
+            },
+            "특허 A-1 (EV 배터리 경량화)": {
+                text: "본 발명은 전기차(EV) 배터리 팩의 경량화 기술에 관한 것이다. 기존 금속 소재 대신 탄소 섬유 강화 플라스틱(CFRP)을 적용하여 배터리 케이스의 중량을 획기적으로 줄이고, 동시에 충격 흡수 성능을 향상시켜 주행 거리 증가에 기여한다.",
+                vectorSeed: 0.15 // A와 유사한 시드
+            },
+            "특허 B (LNG 화물창)": {
+                text: "본 발명은 액화천연가스(LNG) 운반선의 화물창 구조에 관한 것이다. 극저온의 LNG를 안전하게 저장하기 위한 멤브레인 타입 화물창으로, 2차 방벽(Secondary Barrier)의 내구성을 향상시키고 단열 성능을 극대화하는 새로운 구조를 제안한다.",
+                vectorSeed: 0.8 // A와 매우 다른 시드
+            },
+            "특허 B-1 (LNG 2차방벽 소재)": {
+                text: "본 발명은 LNG 화물창의 2차 방벽용 신규 소재에 관한 것이다. 기존 트라이플렉스(Triplex) 소재 대비 극저온 취성(brittleness)이 개선되고, 시공성이 우수한 폴리우레탄 기반 복합 시트를 개발하여 화물창의 안전성을 높인다.",
+                vectorSeed: 0.85 // B와 유사한 시드
+            }
+        };
+
+        function init() {
+            // 캔버스, 라벨, 모달 컨테이너 가져오기
+            canvasContainer = document.getElementById('canvas-container');
+            labelContainer = document.getElementById('label-container');
+            
+            // 모달 UI 요소 초기화
+            modal = document.getElementById('modal');
+            modalTitle = document.getElementById('modal-title');
+            modalSourceText = document.getElementById('modal-source-text');
+            modalVectorSnippet = document.getElementById('modal-vector-snippet');
+            modalVectorVisual = document.getElementById('modal-vector-visual');
+            modalClose = document.getElementById('modal-close');
+
+            // 1. Scene (장면) 생성
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0c0c14);
+
+            // 2. Camera (카메라) 생성
+            const fov = 75, aspect = canvasContainer.clientWidth / canvasContainer.clientHeight, near = 0.1, far = 1000;
+            camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            camera.position.set(60, 60, 60);
+
+            // 3. Renderer (WebGL 렌더러) 생성
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            canvasContainer.appendChild(renderer.domElement);
+
+            // 4. Label Renderer (CSS2D 렌더러 - 라벨용) 생성
+            labelRenderer = new CSS2DRenderer();
+            labelRenderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+            labelContainer.appendChild(labelRenderer.domElement);
+
+            // 5. Controls (OrbitControls - 상호작용) 생성
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.minDistance = 20;
+            controls.maxDistance = 200;
+            controls.target.set(0, 0, 0);
+
+            // 6. Lights (조명) 생성
+            scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(1, 1, 1);
+            scene.add(dirLight);
+
+            // 7. Objects (객체) 생성
+
+            // "의미 공간" 박스
+            const spaceGeometry = new THREE.BoxGeometry(100, 100, 100);
+            const spaceMaterial = new THREE.MeshBasicMaterial({ color: 0x444444, wireframe: true, transparent: true, opacity: 0.5 });
+            scene.add(new THREE.Mesh(spaceGeometry, spaceMaterial));
+            
+            // 축 도우미
+            scene.add(new THREE.AxesHelper(50));
+
+            // 벡터(점) 재질
+            const pointGeometry = new THREE.SphereGeometry(1, 16, 16);
+            const materials = {
+                title: new THREE.MeshStandardMaterial({ color: 0x007bff }),
+                abstract: new THREE.MeshStandardMaterial({ color: 0x28a745 }),
+                claims: new THREE.MeshStandardMaterial({ color: 0xdc3545 }),
+                aiSummary: new THREE.MeshStandardMaterial({ color: 0xffc107 })
+            };
+
+            // 클러스터 생성 함수
+            function createPatentCluster(basePosition, labelText) {
+                const clusterGroup = new THREE.Group();
+                clusterGroup.position.copy(basePosition);
+                
+                const offsets = [
+                    new THREE.Vector3(1, 1, -1),   // Title
+                    new THREE.Vector3(-1, 1, 1),  // Abstract
+                    new THREE.Vector3(1, -1, 1),  // Claims
+                    new THREE.Vector3(-1, -1, -1) // AI Summary
+                ].map(v => v.multiplyScalar(1.5));
+
+                // --- 4개 필드 벡터(점) 생성 (오류 수정됨) ---
+                const mat = materials;
+                const geo = pointGeometry;
+
+                const titleVec = new THREE.Mesh(geo, mat.title);
+                titleVec.position.set(offsets[0].x, offsets[0].y, offsets[0].z);
+                clusterGroup.add(titleVec);
+
+                const abstractVec = new THREE.Mesh(geo, mat.abstract);
+                abstractVec.position.set(offsets[1].x, offsets[1].y, offsets[1].z);
+                clusterGroup.add(abstractVec);
+
+                const claimsVec = new THREE.Mesh(geo, mat.claims);
+                claimsVec.position.set(offsets[2].x, offsets[2].y, offsets[2].z);
+                clusterGroup.add(claimsVec);
+
+                const aiSummaryVec = new THREE.Mesh(geo, mat.aiSummary);
+                aiSummaryVec.position.set(offsets[3].x, offsets[3].y, offsets[3].z);
+                clusterGroup.add(aiSummaryVec);
+                
+                scene.add(clusterGroup);
+                // --- 생성 완료 ---
+
+                // --- 클러스터 라벨 생성 (CSS2DObject) ---
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'label';
+                labelDiv.textContent = labelText;
+                
+                // 라벨 클릭 시 모달창 표시
+                labelDiv.addEventListener('click', (e) => {
+                    e.stopPropagation(); // 3D 캔버스 클릭 방지
+                    showClusterModal(labelText);
+                });
+
+                const clusterLabel = new CSS2DObject(labelDiv);
+                clusterLabel.position.copy(basePosition);
+                clusterLabel.position.y += 8; // 점들보다 약간 위에 위치
+                scene.add(clusterLabel);
+            }
+
+            // --- 특허 클러스터 생성 ---
+            createPatentCluster(new THREE.Vector3(25, 25, 25), "특허 A (EV 배터리 케이스)");
+            createPatentCluster(new THREE.Vector3(-25, -25, -25), "특허 B (LNG 화물창)");
+            createPatentCluster(new THREE.Vector3(30, 28, 22), "특허 A-1 (EV 배터리 경량화)");
+            createPatentCluster(new THREE.Vector3(-30, -28, -22), "특허 B-1 (LNG 2차방벽 소재)");
+
+            // --- 이벤트 리스너 ---
+            window.addEventListener('resize', onWindowResize);
+            
+            // 모달 닫기 버튼
+            modalClose.addEventListener('click', () => {
+                modal.classList.remove('visible');
+                modal.classList.add('hidden');
+            });
+        }
+
+        // --- 모달창 표시 함수 ---
+        function showClusterModal(patentId) {
+            const data = patentData[patentId];
+            if (!data) return;
+
+            // 1. 모달 텍스트 채우기
+            modalTitle.textContent = patentId;
+            modalSourceText.textContent = data.text;
+
+            // 2. 가상 벡터 시각화 (시뮬레이션)
+            
+            // 가짜 랜덤 함수 (시드를 사용해 일관된 패턴 생성)
+            let seed = data.vectorSeed * 1000;
+            const randomWithSeed = (min = 0, max = 1) => {
+                const a = 1664525, c = 1013904223, m = 2**32;
+                seed = (a * seed + c) % m;
+                return min + (seed / m) * (max - min); // min~max 사이 값
+            };
+            
+            // 2a. 벡터 스니펫 (텍스트) 생성
+            const snippetValues = [
+                randomWithSeed(-1, 1).toFixed(4),
+                randomWithSeed(-1, 1).toFixed(4),
+                randomWithSeed(-1, 1).toFixed(4),
+                randomWithSeed(-1, 1).toFixed(4)
+            ];
+            modalVectorSnippet.textContent = `Vector(768D) = [ ${snippetValues[0]}, ${snippetValues[1]}, ..., ${snippetValues[2]}, ${snippetValues[3]} ]`;
+
+            // 2b. 가상 시각화 (막대 그래프) 생성
+            modalVectorVisual.innerHTML = ''; // 이전 막대 제거
+            const numBars = 128; // 768개를 상징하는 128개의 막대
+
+            for (let i = 0; i < numBars; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'vector-bar';
+                
+                const value = randomWithSeed(5, 100); // 5% ~ 100% 높이
+                bar.style.height = `${value}%`;
+
+                // 시드에 따라 색상 계열 변경 (A, A-1은 녹색계열, B, B-1은 파란계열)
+                const hue = (data.vectorSeed < 0.5) ? randomWithSeed(90, 150) : randomWithSeed(180, 240);
+                bar.style.backgroundColor = `hsl(${hue}, 80%, 60%)`;
+                
+                modalVectorVisual.appendChild(bar);
+            }
+
+            // 3. 모달 보이기
+            modal.classList.remove('hidden');
+            modal.classList.add('visible');
+        }
+
+        // 창 크기 조절 처리
+        function onWindowResize() {
+            if (!canvasContainer) return;
+            const width = canvasContainer.clientWidth;
+            const height = canvasContainer.clientHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(width, height);
+            labelRenderer.setSize(width, height);
+        }
+
+        // 애니메이션 루프
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // 컨트롤 업데이트
+            renderer.render(scene, camera); // WebGL 렌더링
+            labelRenderer.render(scene, camera); // CSS2D 라벨 렌더링
+        }
+
+        // 초기화 및 애니메이션 시작
+        init();
+        animate();
+
+    </script>
+</body>
+</html>
