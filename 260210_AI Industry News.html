@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Industry News</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --pill:#f3f4f6;
+      --pillActive:#ffffff;
+      --shadow: 0 10px 30px rgba(17,24,39,.08);
+      --cardRadius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+    .wrap{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+    }
+    .title{
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+    }
+    .subtitle{
+      margin:0 0 34px;
+      color:var(--muted);
+      font-size: 16px;
+    }
+
+    /* Search + Category wrapper */
+    .filterWrap{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    /* Search */
+    .search{
+      position: relative;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .search input{
+      width: 520px;
+      max-width: 100%;
+      padding: 12px 14px 12px 38px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      font-size: 14px;
+      outline:none;
+      transition:.15s ease;
+      background:#fff;
+    }
+    .search input:focus{
+      border-color:#c7d2fe;
+      box-shadow: 0 0 0 4px rgba(99,102,241,.12);
+    }
+    .search .icon{
+      position:absolute;
+      left:14px;
+      top:50%;
+      transform: translateY(-50%);
+      width:16px; height:16px;
+      opacity:.55;
+      color:#111827;
+    }
+
+    /* Category Tabs */
+    .filters{
+      display:flex;
+      justify-content:center;
+      width: 100%;
+    }
+    .pillbar{
+      display:flex;
+      gap:10px;
+      padding: 8px;
+      border:1px solid var(--line);
+      background: var(--pill);
+      border-radius: 999px;
+      width: fit-content;
+      max-width: 100%;
+      overflow:auto;
+      scrollbar-width: none;
+    }
+    .pillbar::-webkit-scrollbar{ display:none; }
+    .pillbar button{
+      border:0;
+      background: transparent;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #374151;
+      cursor:pointer;
+      transition: .15s ease;
+      white-space: nowrap;
+    }
+    .pillbar button:hover{ transform: translateY(-1px); }
+    .pillbar button.active{
+      background: var(--pillActive);
+      box-shadow: 0 2px 10px rgba(17,24,39,.08);
+      color: #111827;
+    }
+
+    /* Count */
+    .count{
+      font-size: 13px;
+      color: var(--muted);
+      transition: .15s ease;
+      white-space: nowrap;
+      align-self: flex-end;   /* 🔹 기본은 오른쪽 정렬 */
+    }
+
+    .count.searching{
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      align-self: center;       /* 🔹 검색 중일 때만 가운데 */
+    }
+
+    .count .keyword{
+      color: #4f46e5;
+    }
+
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 1060px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 780px){
+      .title{ font-size: 44px; }
+      .search input{ width: 100%; }
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+      .search input{ width: 100%; }
+    }
+
+    /* Card */
+    .card{
+      text-decoration:none;
+      color:inherit;
+      display:block;
+      border-radius: var(--cardRadius);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform: translateY(-4px);
+    }
+    .thumb{
+      position:relative;
+      border-radius: var(--cardRadius);
+      overflow:hidden;
+      background:#f3f4f6;
+      aspect-ratio: 16/9;
+      box-shadow: var(--shadow);
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.01);
+    }
+    .badge{
+      position:absolute;
+      left: 12px;
+      bottom: 12px;
+      background: rgba(17,24,39,.82);
+      color:#fff;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      letter-spacing: .02em;
+      backdrop-filter: blur(6px);
+    }
+    .meta{
+      padding: 12px 4px 0;
+    }
+    .headline{
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .sourceRow{
+      margin-top: 8px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:var(--muted);
+      font-size: 12px;
+    }
+    .dot{
+      width:4px; height:4px;
+      background: #d1d5db;
+      border-radius: 999px;
+    }
+
+    /* Empty state */
+    .empty{
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      color: var(--muted);
+      text-align:center;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1 class="title">AI Industry News</h1>
+    <p class="subtitle">매출·기술·정책·사례로 읽는 AI 산업의 흐름과 비즈니스 인사이트</p>
+
+    <div class="filterWrap">
+      <div class="search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="q" placeholder="검색: 회사명, 키워드, 모델명…" autocomplete="off" />
+      </div>
+
+      <div class="filters">
+        <div class="pillbar" id="pillbar"></div>
+      </div>
+
+      <div class="count" id="count"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">
+      조건에 맞는 기사가 없어요. 다른 카테고리/검색어로 다시 시도해보세요.
+    </div>
+  </div>
+
+  <script>
+    /******************************************************************
+     * ✅ CATEGORY CONTEXT (필요하면 여기만 수정)
+     * - key: 기사 category 값과 동일해야 함
+     * - label: 화면에 보이는 이름
+     ******************************************************************/
+    /* ==== CATEGORY START ==== */
+    const CATEGORIES = [
+      { key: "all", label: "All" },
+      { key: "market", label: "Market · 매출/투자" },
+      { key: "tech", label: "Tech · 기술/모델" },
+      { key: "policy", label: "Policy · 정책/규제" },
+      { key: "adoption", label: "Adoption · 기업사례" },
+      { key: "insight", label: "Insight · 리포트/트렌드" },
+    ];
+    /* ==== CATEGORY END ==== */
+
+
+    /******************************************************************
+     * ✅ CONTENT CONTEXT (너는 여기만 업데이트!)
+     * 추가할 때는 객체 하나 복사해서 붙여넣고 값만 바꾸면 됨
+     *
+     * 필수:
+     * - category: "market" | "tech" | "policy" | ... (CATEGORIES key 중 하나)
+     * - title: 기사 제목
+     * - url: 원문 링크
+     * - image: 썸네일 이미지 URL
+     *
+     * 권장:
+     * - source: 매체/출처
+     * - date: "YYYY-MM-DD" (권장) / "YYYY.MM.DD"도 자동 처리됨
+     ******************************************************************/
+    /* ==== CONTENT START ==== */
+    const articles = [
+      {
+        category: "insight",
+        title: '세일즈포스 최고디지털책임자(CDO) "韓 기업, AI에 완벽함 기대하다 뒤처질 수도"',
+        url: "https://www.hankyung.com/article/202601292313i",
+        image: "https://img.hankyung.com/photo/202601/01.43125227.1.jpg",
+        source: "한국경제",
+        date: "2026-01-30"
+      },
+      {
+        category: "insight",
+        title: '2026년 기업이 준비해야 할 AI 전략은?',
+        url: "https://www.skax.co.kr/insight/trend/3614?utm_campaign=newsletter_normal&utm_source=salesforce_newsletter&utm",
+        image: "https://www.skax.co.kr/wp-content/uploads/%EC%9D%B4%EB%AF%B8%EC%A7%80-4-1.png",
+        source: "SK AX",
+        date: "2025-12-26"
+      },
+      {
+        category: "market",
+        title: '엔비디아, 오픈AI 145조 투자 보류…"내부 회의론 커져"',
+        url: "https://www.hankyung.com/article/2026013151537",
+        image: "https://img.hankyung.com/photo/202601/AD.41833603.1.jpg",
+        source: "한국경제",
+        date: "2026-01-31"
+      },
+      {
+        category: "market",
+        title: '"세계 5위" 무시했다가…386% 폭증 대반전',
+        url: "https://www.hankyung.com/article/2026013043491",
+        image: "https://img.hankyung.com/photo/202601/AA.43132189.1.jpg",
+        source: "한국경제",
+        date: "2026-01-30"
+      },
+      {
+        category: "market",
+        title: '애플 매출 40% 급증…"AI 사업도 강화"',
+        url: "https://www.hankyung.com/article/2026013043451",
+        image: "https://img.hankyung.com/photo/202601/AA.43132190.1.jpg",
+        source: "한국경제",
+        date: "2026-01-30"
+      },
+      {
+        category: "policy",
+        title: '구글, 이스라엘 군수업체에 AI기술 지원…윤리규정 위반',
+        url: "https://www.yna.co.kr/view/AKR20260202002900075?input=1195m",
+        image: "https://img8.yna.co.kr/photo/reuters/2026/01/22/PRU20260122312901009_P4.jpg",
+        source: "연합뉴스",
+        date: "2026-02-02"
+      },
+      {
+        category: "market",
+        title: "젠슨 황, '오픈AI에 대한 불만설' 부인…\"최대 규모 투자할 것\"",
+        url: "https://www.yna.co.kr/view/AKR20260201001600091?input=1195m",
+        image: "https://img6.yna.co.kr/photo/reuters/2026/02/01/PRU20260201038801009_P4.jpg",
+        source: "연합뉴스",
+        date: "2026-02-01"
+      },
+      {
+        category: "insight",
+        title: 'AI 추론의 무대가 확장된다: 클라우드에서 엣지까지',
+        url: "https://www.samsungsds.com/kr/insights/from-cloud-to-edge.html",
+        image: "https://rad-planning.github.io/tech-news/image_cloud_1.PNG",
+        source: "삼성SDS",
+        date: "2026-01-28"
+      },
+      {
+        category: "policy",
+        title: '기업을 위한 리서치 활용 전략: Insight보다 먼저 보안을 지켜라',
+        url: "https://www.samsungsds.com/kr/insights/security-comes-before-insight.html",
+        image: "https://rad-planning.github.io/tech-news/image_research_0203.png",
+        source: "삼성SDS",
+        date: "2026-01-23"
+      },
+      {
+        category: "insight",
+        title: '마니쉬 쿠마 솔리드웍스 CEO "AI는 21세기 불씨…혁신의 원천 될 것"',
+        url: "https://www.hankyung.com/article/202602039516i",
+        image: "https://img.hankyung.com/photo/202602/01.43160372.1.jpg",
+        source: "한국경제",
+        date: "2026-02-03"
+      },
+      {
+        category: "adoption",
+        title: '데이터브릭스 "세계 기업 60%, AI 모델 3개 이상 활용"',
+        url: "https://www.hankyung.com/article/202602028928i",
+        image: "https://rad-planning.github.io/tech-news/image_0203.png",
+        source: "한국경제",
+        date: "2026-02-02"
+      },
+      {
+        category: "policy",
+        title: 'AI들의 레딧이라더니…150만명 위험 노출한 "몰트북 열풍"',
+        url: "https://www.hankyung.com/article/202602027653i",
+        image: "https://img.hankyung.com/photo/202602/01.43152585.1.jpg",
+        source: "한국경제",
+        date: "2026-02-02"
+      },
+      {
+        category: "policy",
+        title: "제미나이가 멋대로 문자 전송…AI 에이전트 보안 '비상'",
+        url: "https://www.hankyung.com/article/2026020160737",
+        image: "https://img.hankyung.com/photo/202602/01.42969017.1.jpg",
+        source: "한국경제",
+        date: "2026-02-01"
+      },
+      {
+        category: "tech",
+        title: "13일부터 챗GPT서 GPT-4o 못 써…'GPT-5.2에 선택과 집중'",
+        url: "https://www.hankyung.com/article/2026020164477",
+        image: "https://img.hankyung.com/photo/202602/ZA.43062453.1.jpg",
+        source: "한국경제",
+        date: "2026-02-01"
+      },
+      {
+        category: "tech",
+        title: "'침묵'까지 이해하는 AI 나오나…표정·미소로 의도 읽는 기술 각광",
+        url: "https://www.hankyung.com/article/2026020162961",
+        image: "https://img.hankyung.com/photo/202602/AA.43143572.1.jpg",
+        source: "한국경제",
+        date: "2026-02-01"
+      },
+      {
+        category: "market",
+        title: "커피보다 싸네…한국에 뜨는 '역대급 혜택' 서비스 정체",
+        url: "https://www.hankyung.com/article/202601287175g",
+        image: "https://img.hankyung.com/photo/202601/01.41747169.1.jpg",
+        source: "한국경제",
+        date: "2026-01-31"
+      },
+      {
+        category: "market",
+        title: "아마존, 챗GPT·클로드 쌍두마차 끈다",
+        url: "https://www.hankyung.com/article/2026013043271",
+        image: "https://img.hankyung.com/photo/202601/AA.43132165.3.jpg",
+        source: "한국경제",
+        date: "2026-01-30"
+      },
+      {
+        category: "market",
+        title: "국민 절반 사용, 몸값 치솟는 '챗GPT'…4분기 상장 예고",
+        url: "https://www.hankyung.com/article/2026013036937",
+        image: "https://img.hankyung.com/photo/202601/AD.35638080.1.jpg",
+        source: "한국경제",
+        date: "2026-01-30"
+      },
+      {
+        category: "market",
+        title: "깜짝실적, 대규모 AI 투자…MS·메타가 시장반응 '정반대'인 이유",
+        url: "https://www.hankyung.com/article/202601291691g",
+        image: "https://img.hankyung.com/photo/202601/99.43018626.1.jpg",
+        source: "한국경제",
+        date: "2026-01-30"
+      },
+      {
+        category: "market",
+        title: "엔비디아, 韓에 퀀텀센터 설립…한미 '양자연합군' 뜬다",
+        url: "https://www.hankyung.com/article/2026012917211",
+        image: "https://img.hankyung.com/photo/202601/AA.43122539.3.jpg",
+        source: "한국경제",
+        date: "2026-01-29"
+      },
+      {
+        category: "adoption",
+        title: "삼성SDS '기업용 챗GPT'로 AI수익화 시동",
+        url: "https://www.hankyung.com/article/2026012887391",
+        image: "https://img.hankyung.com/photo/202601/01.43103474.1.jpg",
+        source: "한국경제",
+        date: "2026-01-28"
+      },
+      {
+        category: "tech",
+        title: "AI 로봇 병사가 인지 능력을 높이려면…KAIST 해냈다",
+        url: "https://www.hankyung.com/article/202601275026i",
+        image: "https://img.hankyung.com/photo/202601/01.43090276.1.jpg",
+        source: "한국경제",
+        date: "2026-01-27"
+      },
+      {
+        category: "tech",
+        title: "챗GPT보다 훨씬 낫다…개발자들 요즘 난리라는데",
+        url: "https://www.hankyung.com/article/202601274584i",
+        image: "https://img.hankyung.com/photo/202601/01.43089085.1.jpg",
+        source: "한국경제",
+        date: "2026-01-27"
+      },
+      {
+        category: "market",
+        title: "LG CNS, 작년 매출 6조1295억원…영업이익 전년比 8.4% 증가",
+        url: "https://www.hankyung.com/article/202601274604i",
+        image: "https://img.hankyung.com/photo/202601/01.43089077.3.jpg",
+        source: "한국경제",
+        date: "2026-01-27"
+      },
+      {
+        category: "adoption",
+        title: '막강한 데이터를 무기로…SI기업 "피지컬 AI" 실증 이끈다',
+        url: "https://www.hankyung.com/article/2026012621321",
+        image: "https://img.hankyung.com/photo/202601/AA.43078776.1.jpg",
+        source: "한국경제",
+        date: "2026-01-26"
+      },
+      {
+        category: "insight",
+        title: 'ChatGPT Enterprise 도입 시 반드시 고려해야 할 필수사항 6가지',
+        url: "https://www.samsungsds.com/kr/insights/considerations-to-introduce-chatgpt-enterprise.html",
+        image: "https://rad-planning.github.io/tech-news/image_chatGPT_0203.png",
+        source: "삼성SDS",
+        date: "2025-12-19"
+      },
+      {
+        category: "insight",
+        title: '기업을 위한 리서치 활용 전략: Insight보다 먼저 보안을 지켜라',
+        url: "https://www.samsungsds.com/kr/insights/security-comes-before-insight.html",
+        image: "https://rad-planning.github.io/tech-news/image_policy_0203.png",
+        source: "삼성SDS",
+        date: "2026-01-23"
+      },
+      {
+        category: "insight",
+        title: 'AI가 IT 운영 직무를 대체한다는 오해',
+        url: "https://www.samsungsds.com/kr/insights/it-operations-career-paths-in-the-age-of-ai.html",
+        image: "https://www.cio.com/wp-content/uploads/2025/12/4058780-0-95356500-1764887565-cio_automation_career_path_shakeup_2400x1600-100838901-orig-100924877-orig.jpg?resize=1536%2C1024&quality=50&strip=all",
+        source: "삼성SDS",
+        date: "2026-01-19"
+      },
+      {
+        category: "insight",
+        title: 'Agentic AI가 동료가 되는 순간',
+        url: "https://www.samsungsds.com/kr/insights/how-agentic-ai-is-changing-enterprises-operation.html",
+        image: "https://www.cio.com/wp-content/uploads/2025/12/4098664-0-43660700-1764928971-AI-as-coworker-shutterstock_2710324659.jpg?resize=1536%2C864&quality=50&strip=all",
+        source: "삼성SDS",
+        date: "2026-01-12"
+      },
+      {
+        category: "policy",
+        title: '진화하는 AI 서비스, 변화하는 AI 거버넌스- 안전한 AI 서비스를 위한 기술적 접근 방안',
+        url: "https://www.samsungsds.com/kr/insights/how-agentic-ai-is-changing-enterprises-operation.html",
+        image: "https://rad-planning.github.io/tech-news/image_policy1_0203.PNG",
+        source: "삼성SDS",
+        date: "2025-12-29"
+      },
+      {
+        category: "insight",
+        title: 'AI Agents, 비즈니스 워크플로우와의 통합(1) AI 에이전트의 발전과 시장 트렌드',
+        url: "https://www.samsungsds.com/kr/insights/integrating-ai-assistants-into-business-workflows-part1.html",
+        image: "https://rad-planning.github.io/tech-news/image_workflow_1.PNG",
+        source: "삼성SDS",
+        date: "2026-01-15"
+      },
+      {
+        category: "insight",
+        title: 'LLM에서 자주 발생하는 10가지 주요 취약점',
+        url: "https://www.samsungsds.com/kr/insights/vulnerabilities-in-large-language-models.html",
+        image: "https://rad-planning.github.io/tech-news/image_LLM_0203.png",
+        source: "삼성SDS",
+        date: "2025-04-02"
+      },
+      {
+        category: "insight",
+        title: 'AI Agents, 비즈니스 워크플로우와의 통합(2) 비즈니스 가치 창출과 도입 전략',
+        url: "https://www.samsungsds.com/kr/insights/integrating-ai-assistants-into-business-workflows-part2.html",
+        image: "https://rad-planning.github.io/tech-news/image_workflow_2.png",
+        source: "삼성SDS",
+        date: "2026-01-17"
+      },
+      {
+        category: "tech",
+        title: '현대캐피탈, 전 세계가 인정한 AI 금융사로 발돋움',
+        url: "https://www.hyundaimotorgroup.com/ko/news/CONT0000000000201114",
+        image: "https://www.hyundaimotorgroup.com/image/upload/asset_library/MDA00000000000075303/3c2fed48087e429c9d951ef225486eb7.jpg",
+        source: "Hyundai",
+        date: "2026-01-27"
+      },
+      {
+        category: "adoption",
+        title: '인간 중심 AI 로보틱스 생태계 전략 통해 사람과 협력하는 로보틱스 시대 선언',
+        url: "https://www.hyundaimotorgroup.com/ko/news/CONT0000000000198130",
+        image: "https://www.hyundaimotorgroup.com/image/upload/asset_library/MDA00000000000074150/2b3425b0e3a44f9fb079dfaee2c0a8d2.jpg",
+        source: "Hyundai",
+        date: "2026-01-06"
+      },
+      {
+        category: "adoption",
+        title: '현대자동차그룹, 엔비디아와 AI 기반 모빌리티 설루션 강화',
+        url: "https://www.hyundaimotorgroup.com/ko/news/CONT0000000000191650",
+        image: "https://www.hyundaimotorgroup.com/image/upload/asset_library/MDA00000000000070638/fad4409207004cfaaf2db091bd406f39.png",
+        source: "Hyundai",
+        date: "2025-10-31"
+      },
+      {
+        category: "tech",
+        title: '올트먼 “챗GPT 월성장률, 다시 10%대…새 AI모델 이번 주중 출시”',
+        url: "https://biz.heraldcorp.com/article/10673124?ref=naver",
+        image: "https://wimg.heraldcorp.com/news/cms/2026/02/10/news-p.v1.20260210.9faedf53be794a1aa91b061dc1070624_P1.jpg",
+        source: "헤럴드경제",
+        date: "2026-02-10"
+      },
+      {
+        category: "adoption",
+        title: '로봇·AI 기술 적용…인천항 스마트 공동물류센터 운영 시작',
+        url: "https://www.nocutnews.co.kr/news/6468919?utm_source=naver&utm_medium=article&utm_campaign=20260209110012",
+        image: "https://file2.nocutnews.co.kr/newsroom/image/2026/02/09/202602091008115365_0.jpg",
+        source: "노컷뉴스",
+        date: "2026-02-09"
+      },
+      {
+        category: "market",
+        title: '한국 AI 구독 2년새 400% 급증…10명 중 7명 "2030"',
+        url: "https://www.segye.com/newsView/20260208505437?OutUrl=naver",
+        image: "https://img.segye.com/content/image/2026/02/08/20260208505434.jpg",
+        source: "세계일보",
+        date: "2026-02-08"
+      },
+      {
+        category: "adoption",
+        title: '포스코DX "AI 회계" 전면 도입…채권관리 업무시간 83% 줄여',
+        url: "https://www.hankyung.com/article/2026020943301",
+        image: "https://img.hankyung.com/photo/202602/AA.43234691.1.jpg",
+        source: "한국경제",
+        date: "2026-02-09"
+      },
+      {
+        category: "adoption",
+        title: '피지컬AI 검증 뛰어든 중견기업들',
+        url: "https://www.hankyung.com/article/2026020818291",
+        image: "https://img.hankyung.com/photo/202602/AA.43221204.1.jpg",
+        source: "한국경제",
+        date: "2026-02-08"
+      },
+      {
+        category: "adoption",
+        title: "SK네트웍스, ‘AI 활용’에 방점…현장 적용 ‘실험적 허브’",
+        url: "https://www.ezyeconomy.com/news/articleView.html?idxno=232126",
+        image: "https://cdn.ezyeconomy.com/news/photo/202602/232126_133685_4518.jpg",
+        source: "이지경제",
+        date: "2026-02-09"
+      },
+      {
+        category: "adoption",
+        title: "충북 AI시대 대전환 속도",
+        url: "https://www.cctoday.co.kr/news/articleView.html?idxno=2225471",
+        image: "https://cdn.cctoday.co.kr/news/photo/202602/2225471_678536_915.jpg",
+        source: "충청투데이",
+        date: "2026-02-09"
+      },
+      {
+        category: "adoption",
+        title: "양산시, 행정 AI 업무비서 서비스 본격 도입",
+        url: "https://www.newsis.com/view/NISX20260209_0003507428",
+        image: "https://img1.newsis.com/2026/01/02/NISI20260102_0002031867_web.jpg?rnd=20260102095839",
+        source: "뉴시스",
+        date: "2026-02-09"
+      },
+      {
+        category: "insight",
+        title: "파이퍼 FAU 교수 'AI, 만능해결사로 오해해선 안 돼'",
+        url: "https://www.mt.co.kr/industry/2026/02/10/2026020515131042186",
+        image: "https://thumb.mt.co.kr/cdn-cgi/image/f=avif/21/2026/02/2026020515131042186_1.jpg",
+        source: "머니투데이",
+        date: "2026-02-10"
+      },
+      {
+        category: "adoption",
+        title: "신한은행, 자산관리 AI비서 출격…AX 본격화",
+        url: "https://www.hankyung.com/article/2026020943311",
+        image: "https://img.hankyung.com/photo/202602/AA.43234689.1.jpg",
+        source: "한국경제",
+        date: "2026-02-09"
+      },
+      {
+        category: "adoption",
+        title: "피지컬 AI 시대, 더 주목받는 K배터리",
+        url: "https://economist.co.kr/article/view/ecn202602040041",
+        image: "https://image.economist.co.kr/data/ecn/image/2026/02/04/ecn20260204000054.800x.0.jpg",
+        source: "이코노미스트",
+        date: "2026-02-09"
+      },
+      {
+        category: "tech",
+        title: "현대차, 웨이모에 자율車 5만대 공급…AI 로보틱스기업 변신 '가속'",
+        url: "https://www.hankyung.com/article/2026020944541",
+        image: "https://img.hankyung.com/photo/202602/AA.43234527.1.jpg",
+        source: "한국경제",
+        date: "2026-02-09"
+      },
+      {
+        category: "tech",
+        title: "LG CNS, 퓨리오사AI와 손잡고 NPU 기반 AI 인프라 구축 나선다",
+        url: "https://www.hankyung.com/article/2026020928881",
+        image: "https://img.hankyung.com/photo/202602/AA.43227553.1.jpg",
+        source: "한국경제",
+        date: "2026-02-09"
+      },
+      {
+        category: "tech",
+        title: "'AI 팩토리' 표준화 경쟁…엔비디아·다쏘시스템, OS 선점 나섰다",
+        url: "https://www.hankyung.com/article/2026020928561",
+        image: "https://img.hankyung.com/photo/202602/AA.43227437.1.jpg",
+        source: "한국경제",
+        date: "2026-02-09"
+      },
+      {
+        category: "adoption",
+        title: "한화, 사우디 WDS서 AI 접목 차세대 무기체계 대거 공개",
+        url: "https://www.metroseoul.co.kr/article/20260209500355",
+        image: "https://cdn.emetro.co.kr/data2/content/image/2026/02/09/.cache/512/20260209500356.jpg",
+        source: "metro",
+        date: "2026-02-09"
+      },
+      {
+        category: "tech",
+        title: "회의는 줄이고 AI 활용은 늘린다... 기획처, Vision X 출범",
+        url: "https://www.fnnews.com/news/202602091509428193",
+        image: "https://image.fnnews.com/resource/media/image/2026/01/30/202601301100438298_l.jpg",
+        source: "파이낸셜뉴스",
+        date: "2026-02-09"
+      }
+    ];
+    /* ==== CONTENT END ==== */
+    /******************************************************************
+     * ❌ TEMPLATE / LOGIC (아래는 건드릴 필요 없음)
+     ******************************************************************/
+    let activeCategory = "all";
+    let query = "";
+
+    const $ = (sel) => document.querySelector(sel);
+    const pillbar = $("#pillbar");
+    const grid = $("#grid");
+    const empty = $("#empty");
+    const count = $("#count");
+    const q = $("#q");
+
+    function formatDate(iso){
+      if (!iso) return "";
+      const normalized = iso.replaceAll(".", "-");
+      const [y,m,d] = normalized.split("-").map(Number);
+      if (!y || !m || !d) return "";
+      return `${y}.${String(m).padStart(2,"0")}.${String(d).padStart(2,"0")}`;
+    }
+
+    // ✅ 정렬을 위한 날짜 파서 (YYYY-MM-DD / YYYY.MM.DD 둘 다 지원)
+    function toTime(dateStr){
+      if (!dateStr) return 0;
+      const normalized = dateStr.replaceAll(".", "-");
+      const parts = normalized.split("-").map(Number);
+      if (parts.length < 3 || parts.some(n => Number.isNaN(n))) return 0;
+      const [y, m, d] = parts;
+      return new Date(y, (m || 1) - 1, d || 1).getTime();
+    }
+
+    function makePills(){
+      pillbar.innerHTML = "";
+      CATEGORIES.forEach(cat => {
+        const btn = document.createElement("button");
+        btn.textContent = cat.label;
+        btn.dataset.key = cat.key;
+        btn.className = (cat.key === activeCategory) ? "active" : "";
+        btn.addEventListener("click", () => {
+          activeCategory = cat.key;
+          [...pillbar.querySelectorAll("button")]
+            .forEach(b => b.classList.toggle("active", b.dataset.key === activeCategory));
+          render();
+        });
+        pillbar.appendChild(btn);
+      });
+    }
+
+    function matches(item){
+      const inCategory = (activeCategory === "all") || (item.category === activeCategory);
+      const qv = query.trim().toLowerCase();
+      if (!qv) return inCategory;
+
+      const hay = `${item.title} ${item.source ?? ""}`.toLowerCase();
+      return inCategory && hay.includes(qv);
+    }
+
+    function cardTemplate(item){
+      const a = document.createElement("a");
+      a.className = "card";
+      a.href = item.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+
+      const img = document.createElement("img");
+      img.src = item.image;
+      img.alt = item.title;
+
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      const label = (CATEGORIES.find(c => c.key === item.category)?.label || item.category);
+      badge.textContent = label.split("·")[0].trim();
+
+      thumb.appendChild(img);
+      thumb.appendChild(badge);
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+
+      const h = document.createElement("p");
+      h.className = "headline";
+      h.textContent = item.title;
+
+      const sr = document.createElement("div");
+      sr.className = "sourceRow";
+
+      const s1 = document.createElement("span");
+      s1.textContent = item.source || "Source";
+
+      const dot = document.createElement("span");
+      dot.className = "dot";
+
+      const s2 = document.createElement("span");
+      s2.textContent = formatDate(item.date);
+
+      sr.appendChild(s1);
+      sr.appendChild(dot);
+      sr.appendChild(s2);
+
+      meta.appendChild(h);
+      meta.appendChild(sr);
+
+      a.appendChild(thumb);
+      a.appendChild(meta);
+      return a;
+    }
+
+    function render(){
+      // ✅ 날짜 최신순(내림차순) 정렬 추가
+      const filtered = articles
+        .filter(matches)
+        .sort((a, b) => toTime(b.date) - toTime(a.date));
+
+      grid.innerHTML = "";
+      filtered.forEach(item => grid.appendChild(cardTemplate(item)));
+
+      const isSearching = query.trim().length > 0;
+      if (isSearching) {
+        count.classList.add("searching");
+        count.innerHTML = `검색 결과 <span class="keyword">${filtered.length}</span>건`;
+      } else {
+        count.classList.remove("searching");
+        count.textContent = `${filtered.length} articles`;
+      }
+
+      empty.style.display = filtered.length ? "none" : "block";
+    }
+
+    q.addEventListener("input", (e) => {
+      query = e.target.value;
+      render();
+    });
+
+    makePills();
+    render();
+  </script>
+</body>
+</html>
